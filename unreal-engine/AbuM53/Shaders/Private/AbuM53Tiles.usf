@@ -1,0 +1,190 @@
+// Copyright 2026 Abu M53 contributors. SPDX-License-Identifier: Apache-2.0
+// Original bounded tile renderer. Incoming global ranks establish stable order.
+#include "/Engine/Public/Platform.ush"
+
+uint TotalCount;
+uint BinGroupsX;
+uint TilesX;
+uint TilesY;
+uint TileCapacity;
+uint2 ImageSize;
+int2 ViewOffset;
+float TileAlphaCutoff;
+float TransmittanceCutoff;
+StructuredBuffer<float4> TileProjected;
+StructuredBuffer<uint2> GlobalSortedKeys;
+RWStructuredBuffer<uint> TileCounts;
+RWStructuredBuffer<uint> TileIndices;
+RWStructuredBuffer<uint> TileOverflow;
+StructuredBuffer<uint> TileCountsIn;
+StructuredBuffer<uint> TileOverflowIn;
+StructuredBuffer<uint> SortedTileIndices;
+Texture2D OpaqueDepth;
+RWTexture2D<float4> TileColorOut;
+Texture2D<float4> TileColorIn;
+
+#if COMPUTESHADER
+[numthreads(256, 1, 1)]
+void TileBinCS(uint lane : SV_GroupIndex, uint3 group : SV_GroupID)
+{
+    const uint rank = (group.y * BinGroupsX + group.x) * 256 + lane;
+    if (rank >= TotalCount || TileOverflow[0] != 0) return;
+    const uint splatIndex = GlobalSortedKeys[rank].y;
+    if (splatIndex >= TotalCount)
+    {
+        uint ignored;
+        InterlockedOr(TileOverflow[0], 1u, ignored);
+        return;
+    }
+    const float4 footprint = TileProjected[splatIndex * 3];
+    const float alpha = TileProjected[splatIndex * 3 + 1].w;
+    if (alpha <= 0 || any(footprint.zw <= 0)) return;
+    if (!all(isfinite(footprint)))
+    {
+        uint ignored;
+        InterlockedOr(TileOverflow[0], 1u, ignored);
+        return;
+    }
+    const float2 low = max(float2(0, 0), footprint.xy - footprint.zw);
+    const float2 high = min(float2(ImageSize) - 0.0001, footprint.xy + footprint.zw);
+    if (any(low > high)) return;
+    const uint2 firstTile = min(uint2(low / 16.0), uint2(TilesX - 1, TilesY - 1));
+    const uint2 lastTile = min(uint2(high / 16.0), uint2(TilesX - 1, TilesY - 1));
+    for (uint y = firstTile.y; y <= lastTile.y; ++y)
+    {
+    // Large footprints stop promptly after any overflow. Bin has no barriers,
+    // so individual threads may return without leaving peers at a barrier.
+    if (lastTile.x - firstTile.x > 16 || lastTile.y - firstTile.y > 16)
+    {
+        uint alreadyOverflowed;
+        InterlockedOr(TileOverflow[0], 0u, alreadyOverflowed);
+        if (alreadyOverflowed != 0) return;
+    }
+    for (uint x = firstTile.x; x <= lastTile.x; ++x)
+    {
+        const uint tile = y * TilesX + x;
+        uint slot;
+        InterlockedAdd(TileCounts[tile], 1u, slot);
+        if (slot < TileCapacity)
+            TileIndices[tile * TileCapacity + slot] = rank;
+        else
+        {
+            uint ignored;
+            InterlockedOr(TileOverflow[0], 1u, ignored);
+            return;
+        }
+    }
+    }
+}
+
+groupshared uint TileRanks[1024];
+[numthreads(256, 1, 1)]
+void TileSortCS(uint lane : SV_GroupIndex, uint3 group : SV_GroupID)
+{
+    // Uniform early-out. Bin's UAV writes complete before this separate pass.
+    if (TileOverflowIn[0] != 0) return;
+    const uint tile = group.y * TilesX + group.x;
+    const uint count = min(TileCountsIn[tile], TileCapacity);
+    for (uint i = lane; i < TileCapacity; i += 256)
+        TileRanks[i] = i < count ? TileIndices[tile * TileCapacity + i] : 0xffffffffu;
+    GroupMemoryBarrierWithGroupSync();
+    for (uint width = 2; width <= TileCapacity; width <<= 1)
+    for (uint stride = width >> 1; stride > 0; stride >>= 1)
+    {
+        for (uint sortIndex = lane; sortIndex < TileCapacity; sortIndex += 256)
+        {
+            const uint other = sortIndex ^ stride;
+            if (other > sortIndex)
+            {
+                const uint a = TileRanks[sortIndex], b = TileRanks[other];
+                const bool ascending = (sortIndex & width) == 0;
+                if ((ascending && a > b) || (!ascending && a < b))
+                {
+                    TileRanks[sortIndex] = b;
+                    TileRanks[other] = a;
+                }
+            }
+        }
+        GroupMemoryBarrierWithGroupSync();
+    }
+    for (uint outputIndex = lane; outputIndex < count; outputIndex += 256)
+        TileIndices[tile * TileCapacity + outputIndex] = TileRanks[outputIndex];
+}
+
+groupshared float4 BatchMean[64];
+groupshared float4 BatchConic[64];
+groupshared float4 BatchColor[64];
+groupshared uint RemainingPixels;
+[numthreads(16, 16, 1)]
+void TileCompositeCS(uint3 thread : SV_DispatchThreadID, uint lane : SV_GroupIndex, uint3 group : SV_GroupID)
+{
+    const uint2 pixel = thread.xy;
+    const bool valid = all(pixel < ImageSize);
+    if (TileOverflowIn[0] != 0)
+    {
+        if (valid) TileColorOut[pixel] = 0;
+        return;
+    }
+    const uint tile = group.y * TilesX + group.x;
+    const uint count = min(TileCountsIn[tile], TileCapacity);
+    float3 color = 0;
+    float transmittance = 1;
+    const float depth = valid ? OpaqueDepth.Load(int3(int2(pixel) + ViewOffset, 0)).r : 0;
+    for (uint base = 0; base < count; base += 64)
+    {
+        const uint batchCount = min(64u, count - base);
+        if (lane < batchCount)
+        {
+            const uint rank = SortedTileIndices[tile * TileCapacity + base + lane];
+            const uint splatIndex = GlobalSortedKeys[rank].y;
+            BatchMean[lane] = TileProjected[splatIndex * 3];
+            BatchConic[lane] = TileProjected[splatIndex * 3 + 1];
+            BatchColor[lane] = TileProjected[splatIndex * 3 + 2];
+        }
+        GroupMemoryBarrierWithGroupSync();
+        if (valid && transmittance > TransmittanceCutoff)
+        {
+            for (uint i = 0; i < batchCount; ++i)
+            {
+                const float4 conic = BatchConic[i], source = BatchColor[i];
+                if (depth > source.w + 0.000001) continue;
+                const float2 delta = float2(pixel) + 0.5 - BatchMean[i].xy;
+                const float power = -0.5 * (conic.x * delta.x * delta.x +
+                    2 * conic.y * delta.x * delta.y + conic.z * delta.y * delta.y);
+                if (power < -4.5) continue;
+                const float alpha = min(0.999, conic.w * exp(power));
+                if (alpha < TileAlphaCutoff) continue;
+                color += transmittance * alpha * source.rgb;
+                transmittance *= 1 - alpha;
+                if (transmittance <= TransmittanceCutoff) break;
+            }
+        }
+        // Every lane participates in barriers, including viewport-edge lanes and
+        // pixels that already became opaque. Only a uniform group decision exits.
+        if (lane == 0) RemainingPixels = 0;
+        GroupMemoryBarrierWithGroupSync();
+        if (valid && transmittance > TransmittanceCutoff)
+        {
+            uint ignored;
+            InterlockedAdd(RemainingPixels, 1u, ignored);
+        }
+        GroupMemoryBarrierWithGroupSync();
+        if (RemainingPixels == 0) break;
+    }
+    if (valid) TileColorOut[pixel] = float4(color, 1 - transmittance);
+}
+
+#endif
+struct TileResolveVaryings { float4 Position : SV_Position; };
+TileResolveVaryings TileResolveVS(uint vertex : SV_VertexID)
+{
+    TileResolveVaryings output;
+    const float2 p = float2((vertex << 1) & 2, vertex & 2);
+    output.Position = float4(p * float2(2, -2) + float2(-1, 1), 0, 1);
+    return output;
+}
+float4 TileResolvePS(TileResolveVaryings input) : SV_Target0
+{
+    if (TileOverflowIn[0] != 0) return 0;
+    return TileColorIn.Load(int3(int2(input.Position.xy) - ViewOffset, 0));
+}

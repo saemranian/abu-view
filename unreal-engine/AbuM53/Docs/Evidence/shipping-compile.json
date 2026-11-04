@@ -1,0 +1,20 @@
+{
+  "engine": "5.8.2",
+  "configuration": "Shipping",
+  "platform": "Win64",
+  "result": "Succeeded",
+  "buildSeconds": 24.36,
+  "executableSha256": "8AFD4ADB60CCD9E3C225F0798AA691B00933C551AB1377ADCFF0FF5291A8BAB2",
+  "abuM53UhtModules": [
+    "AbuM53Runtime"
+  ],
+  "editorModuleInLink": false,
+  "unrealEdInLink": false,
+  "cookedOrLaunched": true,
+  "schema": 1,
+  "executable_filename": "AbuM53ShippingHost-Win64-Shipping.exe",
+  "source_snapshot_difference_count": 0,
+  "source_report": "work/AbuM53_shipping_validation.json",
+  "source_report_sha256": "3603b53113747c11f636ad1b97b88cd9c94a0f92a3bf016e31066639d96ab882",
+  "scope": "Shipping compile/link results; cooked launch/render evidence is recorded separately in shipping-cook.json."
+}

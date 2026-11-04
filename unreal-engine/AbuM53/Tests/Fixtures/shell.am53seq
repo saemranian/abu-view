@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "sequence_type": "independent_3dgs_frames",
+  "temporal_optimization": false,
+  "coordinate_frame": "ue_x_forward_z_up_meters",
+  "fps": 30,
+  "frames": [
+    {
+      "time_seconds": 0.0,
+      "file": "shell_0000.ply"
+    },
+    {
+      "time_seconds": 0.03333333333333333,
+      "file": "shell_0001.ply"
+    },
+    {
+      "time_seconds": 0.06666666666666667,
+      "file": "shell_0002.ply"
+    }
+  ]
+}

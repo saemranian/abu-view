@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "passed": true,
+  "checks": [
+    "one generated manifest and unique safe archive names",
+    "unpacked source audit passes and excludes generated manifest",
+    "unpack and repack produces byte-identical ZIP",
+    "stale generated manifest is ignored and replaced"
+  ],
+  "temporary_fixture_zip_sha256": "ea3758f0716656a9ae6a13074daefbf82193c8a2fe331f04912f24386cd3f7b8",
+  "scope": "Packaging mechanics on original temporary test stubs; not final plugin archive or legal clearance."
+}

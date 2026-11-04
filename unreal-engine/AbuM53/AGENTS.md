@@ -1,0 +1,13 @@
+# Abu M53 repository instructions
+
+- Keep implementation, documentation and validation evidence consistent.
+- For every code change, maintain `Docs/Legal/Repository_Origins_and_Licensing.md`, `Docs/Legal/CodeOrigins.json` and affected dependency/notices records. Follow that document's maintenance contract; explicitly identify original/adopted/modified/generated/linked/reference work and the actual contributing agent (including ChatGPT or Antigravity) in the release record. Never invent historical agent authorship. New files require an explicit origin declaration. Refresh the reviewed implementation snapshot with `Tools/Provenance/provenance.py` only after review; source/package/deployment audits must pass. A hash refresh is not license clearance. Read `GEMINI.md` as the Antigravity/Gemini entry-point pointer.
+- For each completed logical change, update the affected documentation, add a dated step-by-step record in `Docs/Changes/`, and update `CHANGELOG.md` in the same Git commit.
+- Begin at `v0.0.0.1`. Follow `Docs/Version_Control_and_Change_Workflow.md`; use `Tools/Versioning/version.py` for subsequent bumps. The carry rule is `v0.0.0.9` → `v0.0.1.0`.
+- Record what changed, why, files affected, actual checks performed and remaining limitations. Never invent historical commits or claim an unexecuted check passed.
+- Complete a logical change before bumping; do not create a release for each keystroke or intermediate repair. If a new release record is already being prepared, finish that record before starting another.
+- Commit completed authorized local changes with their documentation and version metadata. Create the matching annotated version tag only after checks pass. Never move an existing release tag or rewrite shared history without explicit authorization.
+- Do not publish or push to an external remote without authorization. Local version control does not establish legal clearance for public distribution.
+- Keep engine binaries, generated output, credentials and private datasets out of Git. Use the source allowlist audit before committing/releasing.
+- Preserve historical evidence and archives; explain changed version conventions rather than relabeling old results.
+- On this PC, every completed plugin edit must also update the installed UE 5.8 copy to the same bumped release. Follow `Docs/Windows_Installation_and_Test_Project.md`, verify installed hashes/version, and use the persistent `abu_M53_Test_01` project for relevant integration tests. Preserve its existing user assets. Report installation or editor-lock failures explicitly; do not claim an old installed version is current.

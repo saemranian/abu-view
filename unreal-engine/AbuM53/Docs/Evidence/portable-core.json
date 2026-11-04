@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "date": "2026-10-25",
+  "passed": true,
+  "configuration": "Windows Release portable core, zlib enabled",
+  "assertion_checks": 113,
+  "ctest_tests_passed": 1,
+  "ctest_tests_failed": 0,
+  "source_reports": [
+    {
+      "path": "work/AbuM53CoreBuild/final-security-test.log",
+      "sha256": "3440a46560984755ff96627fe79d3d579b41b995667323b0e789a8a9678e6c90"
+    },
+    {
+      "path": "work/AbuM53CoreBuild/final-ctest.log",
+      "sha256": "fd75a9094a006f915bef28b08d0f9486cd67b4222ae89a80926f518d0ee19b59"
+    }
+  ],
+  "limitations": "Portable parser/math/renderer tests; no Unreal rendering or frame-rate claim."
+}

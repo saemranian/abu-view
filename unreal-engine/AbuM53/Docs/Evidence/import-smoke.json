@@ -1,0 +1,66 @@
+{
+  "passed": true,
+  "imports": [
+    {
+      "file": "shell_0000.ply",
+      "asset": "/Game/AbuM53QA/ShellAscii.ShellAscii",
+      "class": "AbuM53Asset",
+      "splat_count": 1000,
+      "frame_count": 1
+    },
+    {
+      "file": "shell_binary.ply",
+      "asset": "/Game/AbuM53QA/ShellBinary.ShellBinary",
+      "class": "AbuM53Asset",
+      "splat_count": 1000,
+      "frame_count": 1
+    },
+    {
+      "file": "shell.splat",
+      "asset": "/Game/AbuM53QA/ShellSplat.ShellSplat",
+      "class": "AbuM53Asset",
+      "splat_count": 1000,
+      "frame_count": 1
+    },
+    {
+      "file": "shell.am53seq",
+      "asset": "/Game/AbuM53QA/ShellSequence.ShellSequence",
+      "class": "AbuM53Asset",
+      "splat_count": 1000,
+      "frame_count": 3
+    }
+  ],
+  "render_test": false,
+  "sequence_seek_checks": [
+    {
+      "time": 0.0,
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "time": 0.05,
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "time": 0.06666666666666667,
+      "expected": 2,
+      "actual": 2
+    },
+    {
+      "time": 0.0,
+      "expected": 0,
+      "actual": 0
+    }
+  ],
+  "map": "/Game/AbuM53QA/ShellQA",
+  "camera_location": [
+    330,
+    0,
+    100
+  ],
+  "source_splats": 1000,
+  "note": "Import and actor setup checked; rendering requires a GPU run.",
+  "evidence_source": "work/AbuM53Host/Saved/AbuM53QA/import-smoke.json",
+  "evidence_source_sha256": "96d9b28c058b9982dbb84b1b12b0c387e06c01c3cb492ae299eb6c364e18ccc9"
+}

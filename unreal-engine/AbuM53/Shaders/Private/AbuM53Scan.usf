@@ -1,0 +1,58 @@
+// Copyright 2026 Abu M53 contributors. SPDX-License-Identifier: Apache-2.0
+// Original work-efficient binary-tree scan. No vendor primitives or wave-size assumptions.
+#include "/Engine/Public/Platform.ush"
+
+#if COMPUTESHADER
+uint ScanCount;
+StructuredBuffer<uint> ScanInput;
+RWStructuredBuffer<uint> ScanOutput;
+RWStructuredBuffer<uint> ScanBlockTotals;
+StructuredBuffer<uint> ScanBlockOffsets;
+groupshared uint ScanTree[512];
+
+[numthreads(256, 1, 1)]
+void ScanBlocksCS(uint lane : SV_GroupIndex, uint3 group : SV_GroupID)
+{
+    const uint blockBase = group.x * 512;
+    const uint first = blockBase + lane;
+    const uint second = first + 256;
+    ScanTree[lane] = first < ScanCount ? ScanInput[first] : 0;
+    ScanTree[lane + 256] = second < ScanCount ? ScanInput[second] : 0;
+    GroupMemoryBarrierWithGroupSync();
+
+    // Each active thread owns one disjoint tree node at a given level.
+    for (uint stride = 1; stride < 512; stride <<= 1)
+    {
+        const uint node = (lane + 1) * (stride << 1) - 1;
+        if (node < 512) ScanTree[node] += ScanTree[node - stride];
+        GroupMemoryBarrierWithGroupSync();
+    }
+    if (lane == 0)
+    {
+        ScanBlockTotals[group.x] = ScanTree[511];
+        ScanTree[511] = 0;
+    }
+    GroupMemoryBarrierWithGroupSync();
+
+    for (uint stride = 256; stride > 0; stride >>= 1)
+    {
+        const uint node = (lane + 1) * (stride << 1) - 1;
+        if (node < 512)
+        {
+            const uint leftSum = ScanTree[node - stride];
+            ScanTree[node - stride] = ScanTree[node];
+            ScanTree[node] += leftSum;
+        }
+        GroupMemoryBarrierWithGroupSync();
+    }
+    if (first < ScanCount) ScanOutput[first] = ScanTree[lane];
+    if (second < ScanCount) ScanOutput[second] = ScanTree[lane + 256];
+}
+
+[numthreads(256, 1, 1)]
+void ScanAddCS(uint3 thread : SV_DispatchThreadID)
+{
+    const uint index = thread.x;
+    if (index < ScanCount) ScanOutput[index] += ScanBlockOffsets[index / 512];
+}
+#endif

@@ -1,0 +1,58 @@
+Abu M54 original Gaussian renderer prototype
+Copyright 2026 Abu Align contributors
+
+The following newly authored files are licensed under Apache License 2.0:
+
+  abu_m54_gaussian.py
+  abu_m54_splat_gpu.py
+  abu_m54_splat_shaders.py
+  benchmark_m54_gaussian.py
+  tests/test_m54_gaussian.py
+  tests/test_m54_gaussian_integration.py
+  abu_m54_cameras.py
+  abu_m54_render_ui.py
+  abu_m54_offscreen.py
+  abu_m54_render.py
+  tests/test_m54_closeup.py
+  tests/test_m54_cameras.py
+  tests/test_m54_render.py
+  abu_m54_sequence.py
+  abu_m54_sequence_gpu.py
+  abu_m54_sequence_ui.py
+  tests/test_m54_sequence.py
+  tests/test_m54_sequence_gpu.py
+  tests/test_m54_sequence_ui.py
+  tests/test_m54_render_sequence.py
+  abu_m54_about.py
+  m54_provenance.py
+  tests/test_m54_about.py
+
+The full license accompanies this notice in M54-GAUSSIAN-APACHE-2.0.txt.
+This scope applies to these original files and their original embedded shaders,
+not to imported dependencies, pre-existing M54 hosts, retained VGGT source,
+optional engines, model weights, datasets, or the entire Abu Align & Train suite.
+Existing copyright notices and licenses remain in force for their own material.
+
+This prototype implements Gaussian projection, spherical-harmonic evaluation,
+sorting and alpha compositing independently. It does not include source code
+from Graphdeco Gaussian Splatting, Mip-Splatting, StopThePop, LichtFeld Studio,
+NVIDIA's sample renderer, Brush, or a research 4D Gaussian implementation.
+It calls the user's installed Windows OpenGL driver; it does not redistribute
+that driver, CUDA, PyTorch, a GPU SDK, a model, or a third-party rasterizer.
+The camera-path and image-export additions are original implementation work.
+The PLY sequence discovery, temporal cache/player and export integration are
+also original work. They read independent exported frames and do not include
+a research model's deformation implementation or pretrained weights.
+Video export invokes a separately installed FFmpeg executable through its
+command-line interface. No FFmpeg source, library or binary is included by
+these modules. Existing application dependency notices remain applicable.
+
+Compatibility with an exported model does not grant rights to redistribute
+that model, its training data, or the software used to produce it.
+
+This notice describes provenance and scope. It does not modify Apache 2.0,
+relicense other materials, or warrant freedom from third-party claims.
+
+The original About presentation and provenance review guard added in v0.1.8.1
+are included above. Their inventories do not relicense the dependencies or
+pre-existing host code they describe. See docs/M54_PROVENANCE_AND_LICENSES.md.

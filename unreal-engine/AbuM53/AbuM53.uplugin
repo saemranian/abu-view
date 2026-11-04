@@ -1,0 +1,32 @@
+{
+  "FileVersion": 3,
+  "Version": 4,
+  "VersionName": "v0.0.0.4",
+  "FriendlyName": "Abu M53",
+  "Description": "Original GPU Gaussian splat renderer with static and animated import, and a portable CPU reference.",
+  "Category": "Rendering",
+  "CreatedBy": "Abu M53 contributors",
+  "CanContainContent": false,
+  "IsBetaVersion": true,
+  "Installed": false,
+  "SupportedTargetPlatforms": [
+    "Win64"
+  ],
+  "Modules": [
+    {
+      "Name": "AbuM53Runtime",
+      "Type": "Runtime",
+      "LoadingPhase": "Default"
+    },
+    {
+      "Name": "AbuM53Render",
+      "Type": "Runtime",
+      "LoadingPhase": "PostConfigInit"
+    },
+    {
+      "Name": "AbuM53Editor",
+      "Type": "Editor",
+      "LoadingPhase": "Default"
+    }
+  ]
+}

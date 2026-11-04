@@ -1,0 +1,460 @@
+{
+  "schema": 1,
+  "plugin": "Abu M53",
+  "version": "v0.0.0.3",
+  "validation_date": "2026-10-25",
+  "engine": "5.8.2-56702186+++UE5+Release-5.8",
+  "hardware": {
+    "platform": "WindowsEditor",
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "rhi": "D3D12 (SM6)",
+    "cpu": "AMD Ryzen Threadripper PRO 3955WX 16-Cores",
+    "ram_gb": 128
+  },
+  "privacy": "Sanitized evidence only. Private absolute paths, usernames, raw logs, source data, and images are excluded.",
+  "source_report_sha256": {
+    "automation_build05": "11cbf6fd0117a18f1f7d3a9ea836d908ad6bf9ae0eaa99d73930a4eb663381ae",
+    "earth_v2": "7684f28b766c2066f631d15911727bbd96ba4198a5b8ced4ad8ea2787d835ba6",
+    "earth_v3": "884e9fe54ceaee581b0a3fac472aba84b74dc76fc1cafbfbf1230233e82f7a20",
+    "earth_legacy_copy_and_reload": "7e97e3cf742687c69a5fbeb3cbd9ca72836628a67d04b53991403f1661a8e90c",
+    "earth_details_gpu": "bf703bdd814a6e652d8422235a562e09157f1072810dd6ff89634d6237196f8b",
+    "sequence_build06": "9bcee87b307af1771b0da31b74b07e2a1449e962a9bdaa525792abd279f2b56f",
+    "sequence_preparation": "466d728320392d2a579fcbeca9b142ed630b81781144373d43381ae95358ae95",
+    "earth_original_migration": "0d4a3a67302dda2fe4e82ac11d5880bee616c1bde04e94ffbf4308877dfa193a",
+    "earth_fresh_loads": "9499ec16e2177ff420dc175d293d2a5dd837995b546c8c767de869e316008edd"
+  },
+  "native_build_identity": {
+    "automation_build": "05",
+    "release_and_final_sequence_build": "06",
+    "directory_comparisons": {
+      "Core": {
+        "file_count": 8,
+        "all_file_sha256_identical": true,
+        "relative_path_and_sha256_manifest_digest": "afc3486cca98d1a31f0ce0ea876bae279e32a59af25436fcb2ca0eaac5153784"
+      },
+      "Source": {
+        "file_count": 40,
+        "all_file_sha256_identical": true,
+        "relative_path_and_sha256_manifest_digest": "5c6eb435e1005308e5d605913f6a15f3c6e91be00eea84efb328368654a79a5e"
+      },
+      "Shaders": {
+        "file_count": 3,
+        "all_file_sha256_identical": true,
+        "relative_path_and_sha256_manifest_digest": "19efd090b99e696ab846119ed049e9475e929fa8958015c81047faead57f1ca9"
+      }
+    },
+    "digest_scheme": "SHA256 of UTF-8, newline-joined sorted relative_path + NUL + file_SHA256 entries; no final newline.",
+    "changed_files_between_snapshots": [
+      "Tools/QA/test_sequence_validation.py",
+      "Tools/QA/ue_sequence_validation.py",
+      "Tools/Sequences/README.md"
+    ],
+    "conclusion": "Core, Source, and Shaders are byte-identical between build05 automation and build06 release. Only Tools files changed."
+  },
+  "ue_automation": {
+    "passed": true,
+    "rhi_validation_enabled": true,
+    "succeeded": 18,
+    "succeeded_with_warnings": 0,
+    "failed": 0,
+    "not_run": 0,
+    "duration_seconds": 0.5883188843727112,
+    "tests": [
+      {
+        "name": "AbuM53.Render.ExclusiveScanGPU",
+        "result": "Success"
+      },
+      {
+        "name": "AbuM53.Render.ProjectionGPU",
+        "result": "Success"
+      },
+      {
+        "name": "AbuM53.Render.RadixGPU",
+        "result": "Success"
+      },
+      {
+        "name": "AbuM53.Render.SourceCacheGPU",
+        "result": "Success"
+      },
+      {
+        "name": "AbuM53.Runtime.Serialization.ContiguousRoundTrip",
+        "result": "Success"
+      },
+      {
+        "name": "AbuM53.Runtime.Serialization.LegacyTaggedMigration",
+        "result": "Success"
+      },
+      {
+        "name": "AbuM53.Runtime.Serialization.MalformedPayload",
+        "result": "Success"
+      },
+      {
+        "name": "AbuM53.Runtime.Serialization.TransientAndExternalIndex",
+        "result": "Success"
+      },
+      {
+        "name": "AbuM53.Runtime.DetailsEditPersistence",
+        "result": "Success"
+      },
+      {
+        "name": "AbuM53.Runtime.ExternalSequenceImport",
+        "result": "Success"
+      },
+      {
+        "name": "AbuM53.Runtime.FrameValidation",
+        "result": "Success"
+      },
+      {
+        "name": "AbuM53.Runtime.ImportCancellationPreservesResult",
+        "result": "Success"
+      },
+      {
+        "name": "AbuM53.Runtime.LatestAsyncRequestWins",
+        "result": "Success"
+      },
+      {
+        "name": "AbuM53.Runtime.ManifestIndexSafety",
+        "result": "Success"
+      },
+      {
+        "name": "AbuM53.Runtime.RetainedSequenceCache",
+        "result": "Success"
+      },
+      {
+        "name": "AbuM53.Runtime.SequenceSelection",
+        "result": "Success"
+      },
+      {
+        "name": "AbuM53.Runtime.SPZVersionsAndMetadata",
+        "result": "Success"
+      },
+      {
+        "name": "AbuM53.Runtime.StableIdInterpolation",
+        "result": "Success"
+      }
+    ]
+  },
+  "static_scene": {
+    "splats": 2210822,
+    "frames": 1,
+    "decoded_bytes": 565970432,
+    "v2": {
+      "import_seconds": 8.508447100000922,
+      "save_seconds": 47.059286800038535,
+      "legacy_load_seconds": 37.69454310002038
+    },
+    "v3": {
+      "import_seconds": 2.7514672999968752,
+      "save_seconds": 0.7435424000141211,
+      "legacy_load_seconds": 37.56256409996422
+    },
+    "new_format_first_reload_seconds": 0.20069500000681728,
+    "legacy_copy_migration": {
+      "copy_and_save_seconds": 43.1523673000047,
+      "splats": 2210822,
+      "decoded_bytes": 565970432
+    },
+    "timing_scope": "Single local runs. Import and save timings are separate; legacy tagged assets still incur legacy parsing once until resaved. No presented-FPS inference.",
+    "original_asset_migration": {
+      "passed": true,
+      "render_test": false,
+      "legacy_load_seconds": 37.89971329999389,
+      "save_seconds": 0.7950530999805778,
+      "splats": 2210822,
+      "frames": 1,
+      "decoded_bytes": 565970432,
+      "before_bytes": 565972956,
+      "after_bytes": 565972376,
+      "before_sha256": "8beba6d1dfb351f18545689517c3036fb1c1b5217a8195e3174affada73f7a7d",
+      "after_sha256": "209aa74ad6572d7f95822217a5e5632bf2fa6f839c8d026adcdfbb8895b3d094",
+      "backup_sha256": "8beba6d1dfb351f18545689517c3036fb1c1b5217a8195e3174affada73f7a7d",
+      "backup_sha256_after": "8beba6d1dfb351f18545689517c3036fb1c1b5217a8195e3174affada73f7a7d",
+      "backup_matches_pre_migration_original_and_remains_unchanged": true,
+      "map_count_checked": 11,
+      "all_map_sha256_unchanged": true,
+      "note": "The original asset was deliberately resaved to the new format after preserving a byte-identical legacy backup. Its hash changed; the backup and maps did not."
+    },
+    "fresh_process_reloads": [
+      {
+        "label": "original",
+        "load_seconds": 0.29511340003227815,
+        "splats": 2210822,
+        "frames": 1,
+        "decoded_bytes": 565970432
+      },
+      {
+        "label": "migrated_copy",
+        "load_seconds": 0.2918706000200473,
+        "splats": 2210822,
+        "frames": 1,
+        "decoded_bytes": 565970432
+      },
+      {
+        "label": "new_import",
+        "load_seconds": 0.18173920002300292,
+        "splats": 2210822,
+        "frames": 1,
+        "decoded_bytes": 565970432
+      }
+    ]
+  },
+  "static_details_gpu": {
+    "passed": true,
+    "rhi_validation_enabled": true,
+    "captures": 20,
+    "reflected_property_edit_stages": 18,
+    "capture_size": [
+      1280,
+      720
+    ],
+    "all_displayed_splat_counts": 2210822,
+    "all_png_crc_valid": true,
+    "stages": [
+      "initial",
+      "transform_location",
+      "transform_rotation",
+      "transform_scale",
+      "transform_units",
+      "appearance_intensity",
+      "appearance_opacity",
+      "appearance_scale",
+      "performance_budget",
+      "performance_backend",
+      "crop_enabled",
+      "crop_min",
+      "crop_max",
+      "animation_time",
+      "animation_rate",
+      "animation_loop",
+      "animation_interpolation",
+      "streaming_mode",
+      "streaming_budget",
+      "restored_baseline"
+    ],
+    "categories": [
+      "transform",
+      "appearance",
+      "performance",
+      "crop",
+      "animation",
+      "streaming"
+    ],
+    "no_disappearance_verified": true,
+    "total_wall_seconds": 62.39225600002101,
+    "scope": "Actual reflected property edits followed by visible GPU captures; native automation additionally checks pre/post edit and undo registration. This is not an exact image-equality test.",
+    "original_asset_and_shell_map_modified_during_details_test": false
+  },
+  "sequence": {
+    "passed": true,
+    "frame_count": 3,
+    "splats_each_frame": [
+      3000000,
+      3000000,
+      3000000
+    ],
+    "sh_degree_each_frame": [
+      3,
+      3,
+      3
+    ],
+    "source_bytes_each_frame": [
+      744001532,
+      744001532,
+      744001532
+    ],
+    "total_source_bytes": 2232004596,
+    "total_decoded_point_bytes": 2304000000,
+    "source_files_opened_read_only": true,
+    "storage": "external",
+    "fps_assumption": 30.0,
+    "fps_is_source_metadata": false,
+    "independent_sample_and_hold": true,
+    "stable_ids_claimed": false,
+    "interpolation": false,
+    "cpu_cache_budget_mib": 3072,
+    "gpu_source_cache_budget_mib": 3072,
+    "index_import_and_save_seconds": 0.1081090000225231,
+    "cold_frame_checks": [
+      {
+        "requested_frame": 0,
+        "displayed_frame": 0,
+        "displayed_splats": 3000000,
+        "wall_seconds_to_ready_capture": 3.1252457999507897,
+        "resident_bytes": 768000000,
+        "streaming_misses": 115
+      },
+      {
+        "requested_frame": 1,
+        "displayed_frame": 1,
+        "displayed_splats": 3000000,
+        "wall_seconds_to_ready_capture": 2.581627600011416,
+        "resident_bytes": 1536000000,
+        "streaming_misses": 254
+      },
+      {
+        "requested_frame": 2,
+        "displayed_frame": 2,
+        "displayed_splats": 3000000,
+        "wall_seconds_to_ready_capture": 2.70446619996801,
+        "resident_bytes": 2304000000,
+        "streaming_misses": 401
+      }
+    ],
+    "warm_seek_checks": [
+      {
+        "requested_frame": 1,
+        "displayed_frame": 1,
+        "displayed_splats": 3000000,
+        "wall_seconds_to_ready_capture": 0.12500970001565292,
+        "resident_bytes": 2304000000,
+        "streaming_misses": 401
+      },
+      {
+        "requested_frame": 0,
+        "displayed_frame": 0,
+        "displayed_splats": 3000000,
+        "wall_seconds_to_ready_capture": 0.2362905999762006,
+        "resident_bytes": 2304000000,
+        "streaming_misses": 401
+      },
+      {
+        "requested_frame": 2,
+        "displayed_frame": 2,
+        "displayed_splats": 3000000,
+        "wall_seconds_to_ready_capture": 0.12536229996476322,
+        "resident_bytes": 2304000000,
+        "streaming_misses": 401
+      }
+    ],
+    "after_map_reopen_checks": [
+      {
+        "requested_frame": 0,
+        "displayed_frame": 0,
+        "displayed_splats": 3000000,
+        "wall_seconds_to_ready_capture": 2.567688299983274,
+        "resident_bytes": 768000000,
+        "streaming_misses": 142
+      }
+    ],
+    "playback_seen_frames": [
+      0,
+      1,
+      2
+    ],
+    "playback_start_misses": 401,
+    "playback_end_misses": 401,
+    "saved_asset_reference_preserved": true,
+    "editor_background_throttle_restored": true,
+    "total_wall_seconds": 34.3654605000047,
+    "capture_size": [
+      1280,
+      720
+    ],
+    "coordinate_view_assumption": "right_down_forward",
+    "source_camera": {
+      "location": [
+        0,
+        -0.9,
+        2
+      ],
+      "target": [
+        0,
+        -0.8,
+        0
+      ],
+      "fov": 90
+    },
+    "visual_review": {
+      "frames_reviewed": 3,
+      "full_head_body_and_skateboard_visible": true,
+      "distinct_poses_visible": true,
+      "subject_obscuring_foreground_fog_resolved": true,
+      "limitations": "Some background fragmentation remains visible. Camera is a chosen inspection view; no trained camera or reference image was supplied, so its cause and pixel-exact fidelity are not established."
+    }
+  },
+  "warm_playback_trace": {
+    "csv_sha256": "4f44819bc16f486e914092eb749cce8f63a6bdb2f1f663e9a58a60955e59c793",
+    "finalized": true,
+    "scope": "ten seconds of native warm playback; PNG processing excluded",
+    "frame_cap_fps": 60,
+    "frame_rows": 600,
+    "boundary_rows_discarded_each_end": 2,
+    "interior_frame_rows": 596,
+    "rendered_views_range": [
+      2.0,
+      2.0
+    ],
+    "views": "One explicit SceneCapture2D plus the realtime editor viewport.",
+    "selected_source_splats_per_view": 3000000,
+    "FrameTime": {
+      "samples": 596,
+      "mean_ms": 16.672338926174497,
+      "minimum_ms": 16.6454,
+      "maximum_ms": 19.4599,
+      "p50_ms": 16.6668,
+      "p95_ms": 16.674525,
+      "p99_ms": 16.68827
+    },
+    "GPUTime": {
+      "samples": 596,
+      "mean_ms": 11.34763489932886,
+      "minimum_ms": 9.7113,
+      "maximum_ms": 60.8034,
+      "p50_ms": 9.87125,
+      "p95_ms": 10.539825,
+      "p99_ms": 53.507354999999976
+    },
+    "callback_timing": {
+      "samples": 599,
+      "mean_ms": 16.6683617696704,
+      "minimum_ms": 13.08699999935925,
+      "maximum_ms": 19.511800026521087,
+      "p50_ms": 16.674499958753586,
+      "p95_ms": 18.116609996650368,
+      "p99_ms": 19.01159402565099,
+      "initial_interval_discarded": true,
+      "png_processing_excluded": true
+    },
+    "source_cache_metrics": {
+      "SourceUploadCount": {
+        "total": 0.0
+      },
+      "SourceUploadMiB": {
+        "total": 0.0
+      },
+      "SourceCacheHits": {
+        "total": 1192.0
+      },
+      "SourcePendingReuses": {
+        "total": 0.0
+      },
+      "SourceCacheEvictions": {
+        "total": 0.0
+      },
+      "SourceUncachedUploads": {
+        "total": 0.0
+      },
+      "SourceCacheResidentMiB": {
+        "minimum": 2197.3125,
+        "maximum": 2197.3125
+      },
+      "SourceCacheReservedMiB": {
+        "minimum": 0.0,
+        "maximum": 0.0
+      },
+      "SourceCacheEntries": {
+        "minimum": 3.0,
+        "maximum": 3.0
+      }
+    },
+    "gpu_source_reuse_verified": true,
+    "is_presented_fps": false,
+    "limitations": [
+      "UE CSV FrameTime and aggregate GPUTime are not presented FPS and do not isolate the splat pass.",
+      "Two rendered views and a 60 FPS cap; results apply only to this RTX 4090 machine and this three-frame clip.",
+      "The GPUTime p99 includes spikes; these measurements are not evidence of a guaranteed frame rate.",
+      "PNG processing is excluded from warm timing. Thread-scope timings are omitted because scopes may cross capture boundaries.",
+      "Earlier renderer baselines used a different view/projection and overlapped a build; no controlled renderer speedup is claimed."
+    ]
+  }
+}

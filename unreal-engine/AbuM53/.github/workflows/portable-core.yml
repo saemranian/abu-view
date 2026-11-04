@@ -1,0 +1,43 @@
+name: Portable core
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  core:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Check release metadata
+        run: python Tools/Versioning/version.py check
+      - name: Test version carry and synchronization
+        run: python Tools/Versioning/test_version.py
+      - name: Check reviewed code origins and provenance documentation
+        run: python Tools/Provenance/provenance.py check
+      - name: Test provenance drift safeguards
+        run: python Tools/Provenance/test_provenance.py
+      - name: Generate original fixtures
+        run: python Tools/QA/generate_fixtures.py --output build/generated-fixtures
+      - name: Test deployment safeguards with synthetic files
+        run: python Tools/Deployment/test_windows.py
+      - name: Source allowlist audit
+        run: python Tools/QA/audit_source.py
+      - name: Source archive roundtrip
+        run: python Tools/QA/test_source_package.py
+      - name: Configure portable core
+        run: cmake -S Core -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON
+      - name: Build portable core
+        run: cmake --build build --config Release --parallel
+      - name: Test portable core
+        run: ctest --test-dir build -C Release --output-on-failure
+
+# UE and GPU validation run separately on authorized, licensed machines.
+# Do not attach unrestricted fork jobs to a runner holding an engine checkout.

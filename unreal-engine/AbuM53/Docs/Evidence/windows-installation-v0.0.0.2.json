@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "release": "v0.0.0.2",
+  "date_utc": "2026-10-25",
+  "engine": "5.8.2",
+  "engine_changelist": 56702186,
+  "project": "abu_M53_Test_01",
+  "deployment": "Engine/Plugins/Marketplace/AbuM53",
+  "build_targets_passed": [
+    "UnrealEditor Win64 Development",
+    "UnrealGame Win64 Development",
+    "UnrealGame Win64 Shipping"
+  ],
+  "helper_tests": {
+    "version": 3,
+    "deployment_synthetic": 4,
+    "package_roundtrip_checks": 4
+  },
+  "integration": {
+    "installed_version": "v0.0.0.2",
+    "engine_plugin_loaded": true,
+    "imports": 4,
+    "splats_per_fixture": 1000,
+    "animated_frames": 3,
+    "seek_actual_indices": [
+      0,
+      1,
+      2,
+      0
+    ],
+    "maps": [
+      "/Game/AbuM53QA/ShellQA",
+      "/Game/AbuM53QA/AnimationQA"
+    ],
+    "dx12_sm6_tests_passed": 8,
+    "tests_failed": 0
+  },
+  "capture": {
+    "file": "Saved/AbuM53QA/shell_gpu.png",
+    "width": 1280,
+    "height": 720,
+    "bytes": 279472,
+    "sha256": "43601a55fcde0e8b0149c4f11f9640c2f985e9bc74400e3da65e5d0de98ce7bc",
+    "png_crc_valid": true,
+    "trailing_bytes": 0,
+    "nonblack_pixels": 231030,
+    "visually_inspected": true
+  },
+  "limits": [
+    "RTX 4090 only",
+    "No performance benchmark rerun",
+    "Opt-in radix stress not rerun",
+    "Packaged animation not tested",
+    "Raw engine logs and generated project assets excluded from public source"
+  ]
+}

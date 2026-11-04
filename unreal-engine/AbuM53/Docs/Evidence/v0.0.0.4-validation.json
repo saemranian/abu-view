@@ -1,0 +1,130 @@
+{
+  "schema": 1,
+  "version": "v0.0.0.4",
+  "date": "2026-10-26",
+  "timezone": "Asia/Dubai",
+  "engine": "UE 5.8.2",
+  "platform": "Windows",
+  "rhi": "D3D12 SM6 with RHI validation",
+  "build_targets_passed": [
+    "Win64 Editor Development",
+    "Win64 Development",
+    "Win64 Shipping"
+  ],
+  "automation": {
+    "succeeded": 19,
+    "failed": 0,
+    "warnings": 0,
+    "source_report_sha256": "fe29bde88eecfb8ffda49ee78fa01df4b4514afc587311c631a9049023042fd4",
+    "tests": [
+      {
+        "name": "AbuM53.Editor.AboutTab",
+        "state": "Success"
+      },
+      {
+        "name": "AbuM53.Render.ExclusiveScanGPU",
+        "state": "Success"
+      },
+      {
+        "name": "AbuM53.Render.ProjectionGPU",
+        "state": "Success"
+      },
+      {
+        "name": "AbuM53.Render.RadixGPU",
+        "state": "Success"
+      },
+      {
+        "name": "AbuM53.Render.SourceCacheGPU",
+        "state": "Success"
+      },
+      {
+        "name": "AbuM53.Runtime.Serialization.ContiguousRoundTrip",
+        "state": "Success"
+      },
+      {
+        "name": "AbuM53.Runtime.Serialization.LegacyTaggedMigration",
+        "state": "Success"
+      },
+      {
+        "name": "AbuM53.Runtime.Serialization.MalformedPayload",
+        "state": "Success"
+      },
+      {
+        "name": "AbuM53.Runtime.Serialization.TransientAndExternalIndex",
+        "state": "Success"
+      },
+      {
+        "name": "AbuM53.Runtime.DetailsEditPersistence",
+        "state": "Success"
+      },
+      {
+        "name": "AbuM53.Runtime.ExternalSequenceImport",
+        "state": "Success"
+      },
+      {
+        "name": "AbuM53.Runtime.FrameValidation",
+        "state": "Success"
+      },
+      {
+        "name": "AbuM53.Runtime.ImportCancellationPreservesResult",
+        "state": "Success"
+      },
+      {
+        "name": "AbuM53.Runtime.LatestAsyncRequestWins",
+        "state": "Success"
+      },
+      {
+        "name": "AbuM53.Runtime.ManifestIndexSafety",
+        "state": "Success"
+      },
+      {
+        "name": "AbuM53.Runtime.RetainedSequenceCache",
+        "state": "Success"
+      },
+      {
+        "name": "AbuM53.Runtime.SequenceSelection",
+        "state": "Success"
+      },
+      {
+        "name": "AbuM53.Runtime.SPZVersionsAndMetadata",
+        "state": "Success"
+      },
+      {
+        "name": "AbuM53.Runtime.StableIdInterpolation",
+        "state": "Success"
+      }
+    ]
+  },
+  "local_tools": {
+    "provenance_unit_tests": 8,
+    "version_unit_tests": 3,
+    "deployment_unit_tests": 11,
+    "package_roundtrip_checks": 4,
+    "all_passed": true
+  },
+  "provenance": {
+    "reviewed_implementation_files": 108,
+    "implementation_sha256": "a12af8a000ea977e256236003ad8bbb3d59f0e610b8f9244777e5d39730542b3",
+    "full_document_sha256": "e72aadf6d9b4f108c5725885016236ebe977284834662e6501b7b0d0f30bb2d4",
+    "guard_scope": "Reviewed origin declarations, file coverage/hashes and narrative review metadata/version/history. Not legal clearance."
+  },
+  "native_ui": {
+    "checked": true,
+    "entry": "Window > About Abu M53",
+    "version_header": "v0.0.0.4",
+    "packaged_document_loaded": true,
+    "review_metadata_and_original_development_sections_inspected": true,
+    "open_file_buttons_visible": [
+      "Full Markdown document",
+      "LICENSE",
+      "Third-party notices"
+    ],
+    "existing_skate_sample_loaded": true
+  },
+  "limitations": [
+    "No remote CI run claimed.",
+    "No new renderer performance benchmark.",
+    "No unrestricted UE Engine Tools publication clearance.",
+    "No undocumented historical Antigravity authorship asserted."
+  ]
+}

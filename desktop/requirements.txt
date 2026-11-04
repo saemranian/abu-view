@@ -1,0 +1,9 @@
+# Abu View for Desktop (Abu M54 Engine v0.1.8.3) Python Runtime Dependencies
+numpy>=1.26.4
+scipy>=1.14.0
+Pillow>=11.0.0
+opencv-python>=4.10.0
+trimesh>=4.4.0
+viser>=0.2.23
+plyfile>=1.0.3
+psutil>=6.0.0

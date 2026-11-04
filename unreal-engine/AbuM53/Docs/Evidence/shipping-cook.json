@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "result": "passed",
+  "engine": "5.8.2",
+  "configuration": "Shipping",
+  "platform": "Win64",
+  "compiled": true,
+  "cooked": true,
+  "staged": true,
+  "packaged": true,
+  "archived": true,
+  "launched": true,
+  "process_exit_code": 0,
+  "cooked_runtime_initialized": true,
+  "runtime_shipping_configuration": true,
+  "map": "/Game/AbuM53QA/ShellQA",
+  "source_splats": 1000,
+  "game_tick_count": 121,
+  "camera_selected": true,
+  "render_evidence": true,
+  "image_dimensions": [
+    1280,
+    720
+  ],
+  "image_png_crc_valid": true,
+  "image_trailing_bytes": 0,
+  "image_sha256": "af4822c89f78b71c74ae7665a1297b8e63db847fd6a493135175c72f39fa5f13",
+  "image_visual_review": "Full colored synthetic Gaussian shell is visible with black margins and no default-pawn occlusion. Smoke rendering proof only; no editor pixel-parity or FPS claim.",
+  "image_channel_stddev": [
+    80.71756274979282,
+    61.84203768178704,
+    61.66227394918528
+  ],
+  "cooked_package_count": 519,
+  "cook_errors": 0,
+  "cook_warnings": 0,
+  "cook_seconds": 20.99,
+  "build_cook_run_seconds": 26.45,
+  "executable_sha256": "8afd4adb60ccd9e3c225f0798aa691b00933c551ab1377adcff0ff5291a8bab2",
+  "plugin_source_snapshot_differences": [],
+  "editor_module_in_link": false,
+  "unreal_ed_in_link": false,
+  "asset_scope": "Owned 1000-splat synthetic static SH3 shell, QA map, and required Unreal/default-plugin resource dependencies. No user scene or external dataset.",
+  "test_host_instrumentation": "Test-only host selects saved camera, sets FOV90, hides default pawn, requests a screenshot, writes runtime status, then exits; not part of published plugin.",
+  "resolved_host_setup_issues": [
+    "Routed AutomationTool logs and saved files into workspace",
+    "Used installed-engine execution permissions",
+    "Used local disk cook output after Zen output-store connection failure",
+    "Included default engine resources required by Landmass startup materials"
+  ],
+  "distribution_boundary": "Compiled game, engine files, PDBs, images and raw logs remain local under work; only sanitized report may be copied into the source repository.",
+  "limitations": [
+    "One owned static fixture on one Windows machine",
+    "No packaged animation, external streaming, AMD or Intel GPU validation",
+    "No packaged FPS claim"
+  ],
+  "camera_fov_degrees": 90,
+  "default_pawn_hidden": true,
+  "restage_after_host_camera_adjustment": true,
+  "restage_build_seconds": 30.0,
+  "source_report": "work/AbuM53_shipping_cook_validation.json",
+  "source_report_sha256": "1ca2336c5c1b481d98e58afa595ccddf3bce5bc61db249a3cca389e202325ad7"
+}

@@ -1,0 +1,42 @@
+{
+  "generator": "Tools/QA/generate_fixtures.py",
+  "generator_schema": 1,
+  "origin": "Original analytic Gaussian data; no photographs, trained weights or third-party assets.",
+  "license": "Apache-2.0",
+  "coordinate_frame": "UE X-forward, Y-right, Z-up; position and scale in meters",
+  "splats_per_frame": 1000,
+  "sh_degree_ply": 3,
+  "sh_degree_splat": 0,
+  "files": [
+    {
+      "path": "shell_0000.ply",
+      "bytes": 244235,
+      "sha256": "5f4bc182b28a3f832f9483e006bcb3aa2d26b9f9f3e97dc93ef46191d0dd0b41"
+    },
+    {
+      "path": "shell_0001.ply",
+      "bytes": 245920,
+      "sha256": "b1dd98106c0b45974d2e8c865031247097e9ab642c4a38d6eecd6f4cf008f55f"
+    },
+    {
+      "path": "shell_0002.ply",
+      "bytes": 244247,
+      "sha256": "3259aa6e5299d47ae10275121fc2cabce6c98f731e3c045076844c2aaf5af2eb"
+    },
+    {
+      "path": "shell_binary.ply",
+      "bytes": 237580,
+      "sha256": "5c98508c1d63627811e82f40944e0d5cf7af2134344da599bb495617e6e7bd81"
+    },
+    {
+      "path": "shell.splat",
+      "bytes": 32000,
+      "sha256": "afe686d8e81335d36fe60c0a34fd23d5aa6b8b88ec4cd09317ef8d64eead485e"
+    },
+    {
+      "path": "shell.am53seq",
+      "bytes": 445,
+      "sha256": "3b9e95ca1aefaa242f91f0b3066f13d4741c74fc0fa615905aadb84d811f8457"
+    }
+  ]
+}

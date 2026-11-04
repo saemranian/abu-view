@@ -1,0 +1,29 @@
+# Unreal and local development outputs
+Binaries/
+Intermediate/
+Saved/
+DerivedDataCache/
+.vs/
+.idea/
+*.sln
+*.suo
+*.VC.db
+
+# Portable builds and Python caches
+build/
+Build/
+out/
+__pycache__/
+*.pyc
+
+# Local secrets and private datasets
+.env
+.env.*
+*.pem
+*.key
+*.pth
+*.pt
+*.ckpt
+PrivateData/
+
+# Keep original synthetic fixtures in Tests/Fixtures tracked.

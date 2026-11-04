@@ -1,0 +1,127 @@
+name: Build and verify CPU core candidates
+on:
+  push:
+    tags: ['v[0-9].[0-9].[0-9].[0-9]']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: candidate-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  lint:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.11.16'
+      - run: python installer/workflow_lint.py
+      - name: Check maintained M54 provenance
+        run: python m54_provenance.py --check
+  build:
+    needs: lint
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-22.04, macos-15]
+    runs-on: ${{ matrix.os }}
+    env:
+      ABU_OFFLINE_TEST: '1'
+      ABU_DATA_HOME: ${{ github.workspace }}/.abu-ci-state
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          # CPython publishes 3.11 security releases as source only on Windows/macOS.
+          # These are draft compatibility builds until a maintained interpreter is qualified.
+          python-version: ${{ runner.os == 'Linux' && '3.11.16' || '3.11.9' }}
+      - name: Install locked builder dependencies
+        run: >-
+          python -m pip install --require-hashes --only-binary=:all: -r installer/requirements-core.lock
+      - name: Validate source and publisher safety
+        run: python -m unittest discover -s tests -p "test_distribution*.py" -v
+      - name: Validate GPU component and full-installer gates
+        run: python -m unittest tests.test_engine_packs tests.test_full_payload -v
+      - name: Linux UI libraries
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y xvfb python3-tk libgl1 libegl1 libfuse2
+      - name: Build actual interpreter and libraries
+        run: python installer/build_core.py
+      - name: Windows offline worker and UI tests
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          & installer/dist/AbuRuntime/AbuRuntime.exe --worker-smoke-test
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          & installer/dist/AbuRuntime/AbuRuntime.exe --viewer-smoke-test
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          & installer/dist/AbuRuntime/AbuRuntime.exe --gui-smoke-test
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          $tool = python installer/fetch_tool.py inno
+          $toolDir = Join-Path $env:RUNNER_TEMP 'inno'
+          $setup = Start-Process -FilePath $tool -ArgumentList "/CURRENTUSER /VERYSILENT /SUPPRESSMSGBOXES /NORESTART /NOICONS /DIR=`"$toolDir`"" -Wait -PassThru -WindowStyle Hidden
+          if ($setup.ExitCode) { throw "Build tool setup failed: $($setup.ExitCode)" }
+          $version = (Get-Content VERSION.txt -Raw).Trim()
+          $csc = 'C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe'
+          & $csc /nologo /target:winexe /win32icon:abu_icon.ico /out:Abu_Align_and_Train.exe launcher.cs
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          python installer/windows/build_setup.py --iscc "$toolDir/ISCC.exe"
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          $installed = Join-Path $env:RUNNER_TEMP 'abu-installed'
+          # Full online setup downloads only pinned software; this runner has no user dataset.
+          $env:ABU_OFFLINE_TEST = '0'
+          $setup = Start-Process installer/dist/Abu_Align_and_Train_Setup_Windows_x64.exe -ArgumentList "/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /DIR=`"$installed`"" -Wait -PassThru -WindowStyle Hidden
+          if ($setup.ExitCode) { throw "Product setup failed: $($setup.ExitCode)" }
+          $env:ABU_OFFLINE_TEST = '1'
+          & "$installed/runtime/AbuRuntime.exe" --self-test
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          & "$installed/runtime/AbuRuntime.exe" --worker-smoke-test
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          $uninstall = Start-Process "$installed/unins000.exe" -ArgumentList '/VERYSILENT /SUPPRESSMSGBOXES /NORESTART' -Wait -PassThru -WindowStyle Hidden
+          if ($uninstall.ExitCode) { throw "Uninstall failed: $($uninstall.ExitCode)" }
+      - name: Linux offline UI worker and AppImage tests
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          installer/dist/AbuRuntime/AbuRuntime --worker-smoke-test
+          installer/dist/AbuRuntime/AbuRuntime --viewer-smoke-test
+          xvfb-run -a installer/dist/AbuRuntime/AbuRuntime --gui-smoke-test
+          export ABU_APPIMAGETOOL="$(python installer/fetch_tool.py appimagetool)"
+          bash installer/linux/build_appimage.sh
+          installer/dist/Abu_Align_and_Train_Linux_x86_64.AppImage --appimage-extract-and-run --self-test
+      - name: Mac native architecture tests and DMG
+        if: runner.os == 'macOS'
+        shell: bash
+        run: |
+          installer/dist/AbuRuntime/AbuRuntime --worker-smoke-test
+          installer/dist/AbuRuntime/AbuRuntime --viewer-smoke-test
+          installer/dist/AbuRuntime/AbuRuntime --gui-smoke-test
+          bash installer/macos/build_dmg.sh
+          "installer/build/macos/Abu Align and Train.app/Contents/MacOS/AbuRuntime" --self-test
+      - name: Verify payload and generate checksums
+        run: python installer/prepare_candidate.py
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: candidate-${{ matrix.os }}
+          if-no-files-found: error
+          path: installer/dist/release-assets/*
+  draft:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.11.16'
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          path: release-assets
+          merge-multiple: true
+      - name: Assemble new draft only after all targets pass
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python installer/github_draft.py

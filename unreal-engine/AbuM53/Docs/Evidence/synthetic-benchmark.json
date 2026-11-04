@@ -1,0 +1,339 @@
+{
+  "schema": 2,
+  "completed": true,
+  "run_id": "20261025T143456_940349Z",
+  "engine_version": "5.8.2-56702186+++UE5+Release-5.8",
+  "warmup_slate_ticks": 120,
+  "measured_slate_intervals": 300,
+  "timing_scope": "offscreen synthetic capture / editor callback submission intervals",
+  "timing_is_gpu_time": false,
+  "timing_is_presented_fps": false,
+  "requested_screenshot_size": [
+    1280,
+    720
+  ],
+  "render_driver": "one explicit SceneCaptureComponent2D.capture_scene per Slate tick",
+  "render_target_format": "RGBA8 / FinalColorLDR",
+  "renderer_counter_validation_required": true,
+  "controls_requested": {
+    "r.AbuM53.Enable": 1,
+    "r.AbuM53.Backend": 1,
+    "r.AbuM53.Tiles": 1,
+    "r.AbuM53.MaxSplats": 5000000,
+    "r.AbuM53.TileCapacity": 1024,
+    "r.VSync": 0,
+    "r.VSyncEditor": 0,
+    "t.MaxFPS": 0,
+    "t.IdleWhenNotForeground": 0,
+    "r.ScreenPercentage": 100,
+    "r.DynamicRes.OperationMode": 0,
+    "csv.CompressionMode": 0,
+    "r.SceneCapture.CullByDetailMode": 0
+  },
+  "stages": [
+    {
+      "name": "selected_1000000",
+      "actor_count": 1,
+      "unique_assets": 1,
+      "source_splats_per_asset": 1000000,
+      "selected_splats": 1000000,
+      "selected_count_basis": "asset count x active actor instances, within 5M view budget",
+      "visible_splats": null,
+      "visible_count_measured": false,
+      "visible_count_note": "No renderer GPU visibility readback is exposed to Python",
+      "actor_positions_cm": [
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "csv_basename": "AbuM53_20261025T143456_940349Z_selected_1000000",
+      "csv_path": "AbuM53_20261025T143456_940349Z_selected_1000000.csv",
+      "csv_finalized": true,
+      "completed": true,
+      "timing_validated_against_renderer": true,
+      "screenshot_path": "selected_1000000.png",
+      "warmup_wall_seconds": 2.815895100007765,
+      "viewport_size_before_measurement": [
+        1317,
+        1034
+      ],
+      "conservative_five_shell_bounds_inside_capture": true,
+      "controls_readback": {
+        "r.AbuM53.Enable": 1.0,
+        "r.AbuM53.Backend": 1.0,
+        "r.AbuM53.Tiles": 1.0,
+        "r.AbuM53.MaxSplats": 5000000.0,
+        "r.AbuM53.TileCapacity": 1024.0,
+        "r.VSync": 0.0,
+        "r.VSyncEditor": 0.0,
+        "t.MaxFPS": 0.0,
+        "t.IdleWhenNotForeground": 0.0,
+        "r.ScreenPercentage": 100.0,
+        "r.DynamicRes.OperationMode": 0.0,
+        "csv.CompressionMode": 0.0,
+        "r.SceneCapture.CullByDetailMode": 0.0
+      },
+      "editor_callback_timing": {
+        "sample_count": 300,
+        "total_wall_seconds": 3.2332405000342987,
+        "mean_ms": 10.777468333447663,
+        "minimum_ms": 8.057200000621378,
+        "maximum_ms": 21.608799987006932,
+        "p50_ms": 10.598349996143952,
+        "p90_ms": 12.699650012655184,
+        "p95_ms": 13.160170055925848,
+        "p99_ms": 14.683476980426347,
+        "percentile_method": "linear interpolation between ordered samples"
+      },
+      "viewport_size_after_measurement": [
+        1317,
+        1034
+      ],
+      "viewport_dimensions_stable": true,
+      "editor_interval_csv": "selected_1000000_editor_intervals.csv",
+      "csv_bytes": 402004,
+      "renderer_validation": {
+        "passed": true,
+        "csv_frame_rows": 300,
+        "boundary_rows_discarded_each_end": 2,
+        "validated_frame_rows": 296,
+        "expected_rendered_views_per_frame": 1,
+        "expected_selected_splats": 1000000,
+        "counter_scope": "CPU render submission counters; not visible splats or GPU completion",
+        "rendered_views_total": 300.0,
+        "invalid_interior_frames": [],
+        "invalid_interior_frame_count": 0,
+        "engine_frame_time": {
+          "sample_count": 296,
+          "mean_ms": 10.746518243243242,
+          "minimum_ms": 8.3291,
+          "maximum_ms": 15.8022,
+          "p50_ms": 10.489,
+          "p90_ms": 12.711649999999999,
+          "p95_ms": 13.216675,
+          "p99_ms": 14.081655000000008,
+          "percentile_method": "linear interpolation between ordered samples"
+        },
+        "engine_gpu_frame_time": {
+          "sample_count": 296,
+          "mean_ms": 3.038966554054054,
+          "minimum_ms": 2.2721,
+          "maximum_ms": 3.9014,
+          "p50_ms": 3.1443,
+          "p90_ms": 3.1643,
+          "p95_ms": 3.17535,
+          "p99_ms": 3.8547249999999997,
+          "percentile_method": "linear interpolation between ordered samples"
+        },
+        "rhi_primitives_range": [
+          2015464.0,
+          2015476.0
+        ]
+      },
+      "screenshot_exporter": "ImageWriteQueue PNG, synchronous, overwrite",
+      "screenshot_source": "same SceneCapture2D render target as timed workload",
+      "screenshot_actual_size": [
+        1280,
+        720
+      ],
+      "screenshot_png_chunk_crc_valid": true,
+      "screenshot_png_end_offset": 228620,
+      "screenshot_trailing_bytes": 0,
+      "screenshot_png_has_no_trailing_data": true,
+      "screenshot_local_only": false,
+      "screenshot_validation_note": "Complete PNG with valid chunk CRCs and final IEND",
+      "csv_sha256": "6c3cc4fc26e0e2dd5e28383bd400df5a3b450e8ba1585b1c03608ebe657c9ef0",
+      "screenshot_sha256": "4b08f3bb52184000494880671a0062a6e128dbe8af615ca9bd2e7bb065cf2bcf"
+    },
+    {
+      "name": "selected_5000000",
+      "actor_count": 5,
+      "unique_assets": 1,
+      "source_splats_per_asset": 1000000,
+      "selected_splats": 5000000,
+      "selected_count_basis": "asset count x active actor instances, within 5M view budget",
+      "visible_splats": null,
+      "visible_count_measured": false,
+      "visible_count_note": "No renderer GPU visibility readback is exposed to Python",
+      "actor_positions_cm": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          -240,
+          0
+        ],
+        [
+          0,
+          240,
+          0
+        ],
+        [
+          0,
+          0,
+          -240
+        ],
+        [
+          0,
+          0,
+          240
+        ]
+      ],
+      "csv_basename": "AbuM53_20261025T143456_940349Z_selected_5000000",
+      "csv_path": "AbuM53_20261025T143456_940349Z_selected_5000000.csv",
+      "csv_finalized": true,
+      "completed": true,
+      "timing_validated_against_renderer": true,
+      "screenshot_path": "selected_5000000.png",
+      "warmup_wall_seconds": 3.3421419999795035,
+      "viewport_size_before_measurement": [
+        1317,
+        1034
+      ],
+      "conservative_five_shell_bounds_inside_capture": true,
+      "controls_readback": {
+        "r.AbuM53.Enable": 1.0,
+        "r.AbuM53.Backend": 1.0,
+        "r.AbuM53.Tiles": 1.0,
+        "r.AbuM53.MaxSplats": 5000000.0,
+        "r.AbuM53.TileCapacity": 1024.0,
+        "r.VSync": 0.0,
+        "r.VSyncEditor": 0.0,
+        "t.MaxFPS": 0.0,
+        "t.IdleWhenNotForeground": 0.0,
+        "r.ScreenPercentage": 100.0,
+        "r.DynamicRes.OperationMode": 0.0,
+        "csv.CompressionMode": 0.0,
+        "r.SceneCapture.CullByDetailMode": 0.0
+      },
+      "editor_callback_timing": {
+        "sample_count": 300,
+        "total_wall_seconds": 2.834025999996811,
+        "mean_ms": 9.446753333322704,
+        "minimum_ms": 7.740499975625426,
+        "maximum_ms": 13.61310004722327,
+        "p50_ms": 9.238599974196404,
+        "p90_ms": 10.858360020210966,
+        "p95_ms": 11.395545018604025,
+        "p99_ms": 12.408734005293807,
+        "percentile_method": "linear interpolation between ordered samples"
+      },
+      "viewport_size_after_measurement": [
+        1317,
+        1034
+      ],
+      "viewport_dimensions_stable": true,
+      "editor_interval_csv": "selected_5000000_editor_intervals.csv",
+      "csv_bytes": 404363,
+      "renderer_validation": {
+        "passed": true,
+        "csv_frame_rows": 300,
+        "boundary_rows_discarded_each_end": 2,
+        "validated_frame_rows": 296,
+        "expected_rendered_views_per_frame": 1,
+        "expected_selected_splats": 5000000,
+        "counter_scope": "CPU render submission counters; not visible splats or GPU completion",
+        "rendered_views_total": 300.0,
+        "invalid_interior_frames": [],
+        "invalid_interior_frame_count": 0,
+        "engine_frame_time": {
+          "sample_count": 296,
+          "mean_ms": 9.42405608108108,
+          "minimum_ms": 8.3301,
+          "maximum_ms": 13.5505,
+          "p50_ms": 9.187000000000001,
+          "p90_ms": 10.8541,
+          "p95_ms": 11.2857,
+          "p99_ms": 12.42107,
+          "percentile_method": "linear interpolation between ordered samples"
+        },
+        "engine_gpu_frame_time": {
+          "sample_count": 296,
+          "mean_ms": 6.895376351351351,
+          "minimum_ms": 6.8424,
+          "maximum_ms": 8.2922,
+          "p50_ms": 6.86035,
+          "p90_ms": 6.8980999999999995,
+          "p95_ms": 6.923375,
+          "p99_ms": 8.03791,
+          "percentile_method": "linear interpolation between ordered samples"
+        },
+        "rhi_primitives_range": [
+          10013018.0,
+          10013030.0
+        ]
+      },
+      "screenshot_exporter": "ImageWriteQueue PNG, synchronous, overwrite",
+      "screenshot_source": "same SceneCapture2D render target as timed workload",
+      "screenshot_actual_size": [
+        1280,
+        720
+      ],
+      "screenshot_png_chunk_crc_valid": true,
+      "screenshot_png_end_offset": 362762,
+      "screenshot_trailing_bytes": 0,
+      "screenshot_png_has_no_trailing_data": true,
+      "screenshot_local_only": false,
+      "screenshot_validation_note": "Complete PNG with valid chunk CRCs and final IEND",
+      "csv_sha256": "0f13b00e9b2fc3d6dcf75bd3828b82b939c34f3a3917e8e5593ae9e4f3cae3d0",
+      "screenshot_sha256": "dbe3e86c7345cbfe9fb77da960c20bbcaca8c555dd4a9c0784c63e4b2d9e4560"
+    }
+  ],
+  "limitations": [
+    "1M and 5M refer to selected source inputs; visible splats are unmeasured.",
+    "Five instances share one synthetic asset; this is not five unique scenes.",
+    "Evidence PNG export reads the capture render target outside the timed window.",
+    "The editor viewport is unrelated to the fixed 1280x720 capture workload.",
+    "CSV frames and Slate callback intervals may have different boundaries.",
+    "Tile overflow may invoke the sorted-quad fallback; no overflow readback is exposed.",
+    "Callback time includes submission overhead and possible GPU waiting; it is not FPS.",
+    "GPUTime is engine-reported aggregate GPU frame time, not only the splat passes.",
+    "No forced GPU synchronization is inserted per capture; callbacks may queue work."
+  ],
+  "source_file": "shell_1000000.ply",
+  "source_bytes": 236001583,
+  "generator_metadata": {
+    "path": "shell_1000000.ply",
+    "splats": 1000000,
+    "bytes": 236001583,
+    "sha256": "ec10328d6ad001b67e389d4ad7abbb3bcb2a01f4354775b71b410fa7a47256f9",
+    "sh_degree": 3,
+    "format": "binary_little_endian_ply",
+    "source_units": "meters, UE X-forward Y-right Z-up",
+    "scale_multiplier_relative_to_1000_point_fixture": 0.03162277660168379,
+    "license": "Apache-2.0",
+    "origin": "Original analytic synthetic shell; no third-party assets",
+    "limitation": "Footprints shrink with inverse square root of count. This is not a representative high-overlap real-scene benchmark."
+  },
+  "import_wall_seconds": 4.413069500005804,
+  "camera": {
+    "location_cm": [
+      1365.7042692022528,
+      0,
+      0
+    ],
+    "target_cm": [
+      0,
+      0,
+      0
+    ],
+    "horizontal_fov_degrees": 60
+  },
+  "actual_capture_size": [
+    1280,
+    720
+  ],
+  "source_report": "work/AbuM53Benchmark/final-results/benchmark.json",
+  "source_report_sha256": "d3ca354a1ba604f782d3a8af1037b244ccae67a92fcf53cdc4227987e92753e7",
+  "test_configuration": {
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "feature_level": "SM6",
+    "driver": "610.88",
+    "identity_evidence": "Locally inspected startup records in AbuM53_benchmark_final.log; raw engine log not redistributed"
+  }
+}

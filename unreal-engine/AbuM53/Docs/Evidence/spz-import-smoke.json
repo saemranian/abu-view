@@ -1,0 +1,68 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "file": "spz_v1_sh0.spz",
+      "accepted": true,
+      "splats": 1,
+      "expected_sh_degree": 0
+    },
+    {
+      "file": "spz_v1_sh3.spz",
+      "accepted": true,
+      "splats": 1,
+      "expected_sh_degree": 3
+    },
+    {
+      "file": "spz_v2_sh0.spz",
+      "accepted": true,
+      "splats": 1,
+      "expected_sh_degree": 0
+    },
+    {
+      "file": "spz_v2_sh3.spz",
+      "accepted": true,
+      "splats": 1,
+      "expected_sh_degree": 3
+    },
+    {
+      "file": "spz_v3_sh0.spz",
+      "accepted": true,
+      "splats": 1,
+      "expected_sh_degree": 0
+    },
+    {
+      "file": "spz_v3_sh3.spz",
+      "accepted": true,
+      "splats": 1,
+      "expected_sh_degree": 3
+    },
+    {
+      "file": "spz_v4_sh0.spz",
+      "accepted": true,
+      "splats": 1,
+      "expected_sh_degree": 0
+    },
+    {
+      "file": "spz_v4_sh3.spz",
+      "accepted": true,
+      "splats": 1,
+      "expected_sh_degree": 3
+    },
+    {
+      "file": "spz_bad_toc.spz",
+      "accepted": false
+    },
+    {
+      "file": "spz_extensions_rejected.spz",
+      "accepted": false
+    },
+    {
+      "file": "spz_gzip_bomb.spz",
+      "accepted": false
+    }
+  ],
+  "render_test": false,
+  "evidence_source": "work/AbuM53Host/Saved/AbuM53QA/spz-import-smoke.json",
+  "evidence_source_sha256": "e9cf6f1940fb1c667a70c328ef341ebcceaa48beece2303bce96d5a16e04addb"
+}

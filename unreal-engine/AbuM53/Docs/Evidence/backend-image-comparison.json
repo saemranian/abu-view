@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "width": 1280,
+  "height": 720,
+  "channels": "RGB",
+  "pixel_space": "Captured 8-bit display/output RGB; no linearization; alpha excluded",
+  "images": [
+    {
+      "mode": "gpu_tiled",
+      "file": "backend_gpu_tiled.png",
+      "sha256": "43ddeadaa090b7e1abeb1df39707ecbb5db17cafe369431b222929b3ebd08596"
+    },
+    {
+      "mode": "gpu_quad",
+      "file": "backend_gpu_quad.png",
+      "sha256": "8e71b12492d5bc49e7603a9d36f6529cb5e9bd0af5fab5e81c3384d4a26c5df4"
+    },
+    {
+      "mode": "gpu_overflow_probe",
+      "file": "backend_gpu_overflow_probe.png",
+      "sha256": "8e71b12492d5bc49e7603a9d36f6529cb5e9bd0af5fab5e81c3384d4a26c5df4"
+    },
+    {
+      "mode": "cpu_assisted",
+      "file": "backend_cpu_assisted.png",
+      "sha256": "8e71b12492d5bc49e7603a9d36f6529cb5e9bd0af5fab5e81c3384d4a26c5df4"
+    },
+    {
+      "mode": "disabled",
+      "file": "backend_disabled.png",
+      "sha256": "29b9ad2843a8943aabe17884ac1482e19b7ab7e7c038186e4cb5e7c6e14fcfc4"
+    },
+    {
+      "mode": "cpu_software",
+      "file": "backend_cpu_software.png",
+      "sha256": "f139777eb2acafb747e78ee2a284e091bc41e2e175037b2ba9735b52325f4ff0"
+    }
+  ],
+  "comparisons": [
+    {
+      "first": "gpu_tiled",
+      "second": "gpu_quad",
+      "exact_pixels": false,
+      "mean_abs_channel_error_8bit": 0.030910373263888888,
+      "max_abs_channel_error_8bit": 14,
+      "max_nonzero_channel_error_8bit": 14,
+      "mean_nonzero_channel_error_8bit": 1.0086035972241891,
+      "rmse_8bit": 0.17787100149067664,
+      "psnr_db": 63.12870060193315,
+      "different_channels": 84732,
+      "different_pixels": 73284,
+      "total_pixels": 921600,
+      "foreground_union_pixels": 237148,
+      "foreground_mean_abs_channel_error_8bit": 0.12012329853087524,
+      "foreground_psnr_db": 57.233470604723976,
+      "psnr_null_meaning": "Identical image/region; PSNR is infinite."
+    },
+    {
+      "first": "gpu_tiled",
+      "second": "cpu_software",
+      "exact_pixels": false,
+      "mean_abs_channel_error_8bit": 0.028111979166666665,
+      "max_abs_channel_error_8bit": 2,
+      "max_nonzero_channel_error_8bit": 2,
+      "mean_nonzero_channel_error_8bit": 1.00006433433266,
+      "rmse_8bit": 0.16767705885068124,
+      "psnr_db": 63.64133065662864,
+      "different_channels": 77719,
+      "different_pixels": 68158,
+      "total_pixels": 921600,
+      "foreground_union_pixels": 237146,
+      "foreground_mean_abs_channel_error_8bit": 0.10924915452927732,
+      "foreground_psnr_db": 57.74606403281386,
+      "psnr_null_meaning": "Identical image/region; PSNR is infinite."
+    },
+    {
+      "first": "gpu_quad",
+      "second": "cpu_assisted",
+      "exact_pixels": true,
+      "mean_abs_channel_error_8bit": 0.0,
+      "max_abs_channel_error_8bit": 0,
+      "max_nonzero_channel_error_8bit": 0,
+      "mean_nonzero_channel_error_8bit": 0.0,
+      "rmse_8bit": 0.0,
+      "psnr_db": null,
+      "different_channels": 0,
+      "different_pixels": 0,
+      "total_pixels": 921600,
+      "foreground_union_pixels": 231023,
+      "foreground_mean_abs_channel_error_8bit": 0.0,
+      "foreground_psnr_db": null,
+      "psnr_null_meaning": "Identical image/region; PSNR is infinite."
+    },
+    {
+      "first": "gpu_quad",
+      "second": "gpu_overflow_probe",
+      "exact_pixels": true,
+      "mean_abs_channel_error_8bit": 0.0,
+      "max_abs_channel_error_8bit": 0,
+      "max_nonzero_channel_error_8bit": 0,
+      "mean_nonzero_channel_error_8bit": 0.0,
+      "rmse_8bit": 0.0,
+      "psnr_db": null,
+      "different_channels": 0,
+      "different_pixels": 0,
+      "total_pixels": 921600,
+      "foreground_union_pixels": 231023,
+      "foreground_mean_abs_channel_error_8bit": 0.0,
+      "foreground_psnr_db": null,
+      "psnr_null_meaning": "Identical image/region; PSNR is infinite."
+    }
+  ],
+  "disabled_nonzero_channels": 0,
+  "disabled_max_channel_value": 0,
+  "limitations": "One fixed synthetic scene. These image metrics do not verify source fidelity, GPU overflow occurrence, general scene parity or performance.",
+  "evidence_source": "work/AbuM53Host/Saved/AbuM53QA/backend-image-comparison.json",
+  "evidence_source_sha256": "cdb1008edb06cee4de03ca8a90ac968485a47b150e700bbee9c379cadd90856c"
+}

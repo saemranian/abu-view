@@ -1,0 +1,705 @@
+{
+  "schema": 1,
+  "scope": [
+    ".github",
+    "Config",
+    "Core",
+    "Shaders",
+    "Source",
+    "Tests",
+    "ThirdParty",
+    "Tools"
+  ],
+  "origins": {
+    "abu-m53-original": {
+      "name": "Original Abu M53 implementation",
+      "license": "Apache-2.0",
+      "source": "This repository; recorded implementation history in Docs/Changes",
+      "relationship": "Independently authored implementation using published methods and external APIs; no formal clean-room claim"
+    },
+    "abu-m53-synthetic": {
+      "name": "Original analytic fixtures and their generated manifests",
+      "license": "Apache-2.0",
+      "source": "Tools/QA/generate_fixtures.py and original fixture generators in this repository",
+      "relationship": "Owned generated synthetic test data; excludes private user scenes"
+    },
+    "spz-informed": {
+      "name": "SPZ upstream-informed layout and decoding semantics",
+      "license": "MIT attribution retained alongside original Apache-2.0 implementation",
+      "source": "https://github.com/nianticlabs/spz/tree/affd0ecea7fbb4c265ee119475af7ee5b2997482",
+      "relationship": "Original bounded compatibility reader informed by upstream; not a vendored full library",
+      "notice": "Core/SPZ_NOTICE.md"
+    },
+    "zstandard": {
+      "name": "Zstandard standalone decompressor v1.5.7",
+      "license": "BSD-3-Clause option selected",
+      "source": "https://github.com/facebook/zstd/releases/tag/v1.5.7",
+      "relationship": "Upstream-generated standalone decoder and headers, no manual implementation changes",
+      "notice": "ThirdParty/Zstd/LICENSE; ThirdParty/Zstd/PROVENANCE.md"
+    },
+    "xxhash-zstd-adaptation": {
+      "name": "xxHash adaptation embedded in Zstandard v1.5.7",
+      "license": "BSD-3-Clause option under adaptation source-tree root license",
+      "source": "https://github.com/facebook/zstd/blob/v1.5.7/lib/common/xxhash.h",
+      "relationship": "Transitive adopted implementation; version macros 0.8.2; no independent commit asserted",
+      "notice": "Embedded Yann Collet/Meta notices in ThirdParty/Zstd/zstddeclib.c and ThirdParty/Zstd/LICENSE"
+    }
+  },
+  "files": {
+    ".github/workflows/portable-core.yml": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "339753abaa4a5a2fb2f77444784b78dd738aa9eb2b55c8d1dfb1c8fe9934b964"
+    },
+    "Config/FilterPlugin.ini": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "58d4494e270aafa9d04b2981e75568126274e341ad40a678937edda1de5e8bc0"
+    },
+    "Core/CMakeLists.txt": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "3f2067bbc5d309505a4810e342486ca5326dd88d45136b1b5911ee9bca911773"
+    },
+    "Core/Include/AbuM53/Codecs.h": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "132106ea09ad9749c37ad55cd3f8eda016ebc8f7331acbb883f6436e5a765ffe"
+    },
+    "Core/Include/AbuM53/Core.h": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "909c9f6de89b2c0951bcfeb30bb34493078896364fb0abd6a2879270d492a16e"
+    },
+    "Core/Source/Codecs.cpp": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "a6c57f35a763688638e24f2d4e4b0249ff4f49ff0aa0cfd75350863d619a01ba"
+    },
+    "Core/Source/Core.cpp": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "6b5ae4127adbf81477837b55ce1d4a0097e60820a5d7d766c182f4badca76590"
+    },
+    "Core/Source/Render.cpp": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "2624bf9decbec7a6ba3887d4509cf9dc89d790d2a4564fde4f767fbf52907487"
+    },
+    "Core/Source/Spz.cpp": {
+      "origins": [
+        "abu-m53-original",
+        "spz-informed"
+      ],
+      "sha256": "599bcbbe40c5a31e4972d5ff2740997687fb6cb6eb2b9438635cdf4b1524a69d"
+    },
+    "Shaders/Private/AbuM53.usf": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "28bb9c72dea7aeaeb69427b65253527b039f73d9a4c0faaa74250b1f8d4be75d"
+    },
+    "Shaders/Private/AbuM53Scan.usf": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "b78de51ae76b380c543955dc418d484112e5db061bc380cf149e3a709c7e0074"
+    },
+    "Shaders/Private/AbuM53Tiles.usf": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "93d61da386c994d2a1dc22660500a32932b866edf85e9b7bb91a94bc300afb95"
+    },
+    "Source/AbuM53Editor/AbuM53Editor.Build.cs": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "cf5dae0fc4067b4c3a5214393505a9867de36338e5dbd02676bfd71e7993448c"
+    },
+    "Source/AbuM53Editor/Private/AbuM53About.cpp": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "71a203b2ac08b5fb58140b814eb3a017e10a6bdb62c63d29c4b845f0a6421105"
+    },
+    "Source/AbuM53Editor/Private/AbuM53About.h": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "2dbec99610eda431671abe2d80f9ac79f73a4a9c0a710f429c2453d0b55e40be"
+    },
+    "Source/AbuM53Editor/Private/AbuM53AboutTests.cpp": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "bfa2d1120ccae992aea8e3b90e336aa833a515d0eecadfc5128b157aae460bbb"
+    },
+    "Source/AbuM53Editor/Private/AbuM53ActorFactory.cpp": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "2236d8a57960eb1361d7daffc3411bcbae891cd937e0446ab8bd4f8e0fa38f28"
+    },
+    "Source/AbuM53Editor/Private/AbuM53EditorModule.cpp": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "1fbb7d8cc038d08cf1960108a85170be07077cbfb2af4e30a93a8402a1dcdf2c"
+    },
+    "Source/AbuM53Editor/Private/AbuM53Factory.cpp": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "ac509469d4c9fd18bf9927d52c68072c8189559eeb0fb1e9cf27458bf88f4b83"
+    },
+    "Source/AbuM53Editor/Public/AbuM53ActorFactory.h": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "bbcaed2b4a006380c90ee32e5e81d227d35fe03f1225ad7cef2a2727caa45ada"
+    },
+    "Source/AbuM53Editor/Public/AbuM53Factory.h": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "d845e1251f9aa03d647165a2250d0a2692908262a627a2359512df79f43c8901"
+    },
+    "Source/AbuM53Render/AbuM53Render.Build.cs": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "09b7b4eb28ad8e38ef1261a28d9551bf302358146ccc34dede8fcbf334a6fa42"
+    },
+    "Source/AbuM53Render/Private/AbuM53ProjectionTests.cpp": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "f920d9f2446541f1615b2b30035c8a844d150e1a9dddccb403a97cf38753caca"
+    },
+    "Source/AbuM53Render/Private/AbuM53RadixTests.cpp": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "5ac0520507f2e4732d4929e7a2ec49d0cfaa3ce56c1e8742d6845848f84726fe"
+    },
+    "Source/AbuM53Render/Private/AbuM53Render.cpp": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "591c2cb35e5797baf244fe222d142c79bb1f5cdf9061de47cfcb37ee2460e57b"
+    },
+    "Source/AbuM53Render/Private/AbuM53Scan.cpp": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "a04dde2c0ae82279855fe6f31d682b03c356b957d6d6170725065d7a434fb7bb"
+    },
+    "Source/AbuM53Render/Private/AbuM53Scan.h": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "c1443b14caec10bad9ea16282e532ef4b1ee6b33e72950dba91350ede4e9c5e5"
+    },
+    "Source/AbuM53Render/Private/AbuM53Shaders.h": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "fceb90e082d851e5e902afa1239f396273bf557f7405161b2310b591899cf398"
+    },
+    "Source/AbuM53Render/Private/AbuM53SourceCache.cpp": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "21b7d5aebfbea6fd9fa704c0458890df95154cd86884a9228b1729de74787c8b"
+    },
+    "Source/AbuM53Render/Private/AbuM53SourceCache.h": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "2bec93056e25184194f7b27765c6dd31d204973b7b4cdde05913df4a8026cc19"
+    },
+    "Source/AbuM53Render/Private/AbuM53SourceCacheTests.cpp": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "ad933ad60bdde06b03adf199048192936bef2a5112f49fc20907848bfd1c85d8"
+    },
+    "Source/AbuM53Render/Private/AbuM53Tiles.cpp": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "2833ddf4c7aefd34f8b0a8a588f31a35a7995701b5497ac889bc0523c5078853"
+    },
+    "Source/AbuM53Render/Private/AbuM53Tiles.h": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "17470d4414ef6463d38a7b0dd224b0178b892b88dd21a2f9293b9ddab81a1cc8"
+    },
+    "Source/AbuM53Runtime/AbuM53Runtime.Build.cs": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "5a1af14920a16d427887c008a9d99154f1c45b118e156645c1c469e3b7bb195b"
+    },
+    "Source/AbuM53Runtime/Private/AbuM53Actor.cpp": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "a88cf17a860458d92625d5fe1290cea166bfa23e54275ee8af4ccebeef351365"
+    },
+    "Source/AbuM53Runtime/Private/AbuM53Asset.cpp": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "0521d1ddff02d92e5aa0db94317a2c861f6067f49504eee85366cf95534f4e68"
+    },
+    "Source/AbuM53Runtime/Private/AbuM53Component.cpp": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "75dcf1d144386fd158c34eeda0904735bc9da0413ddd64cd7039750fd0cf7bbc"
+    },
+    "Source/AbuM53Runtime/Private/AbuM53Compression.cpp": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "35a8598107617f8e869b1a0d9d85996a3b65fb5c0ed90a10f7f299ba7910d46e"
+    },
+    "Source/AbuM53Runtime/Private/AbuM53Compression.h": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "448955171a21aff18c98de4973f9aa58d48766a5c4e8483edd3788ea96aea9ed"
+    },
+    "Source/AbuM53Runtime/Private/AbuM53Import.cpp": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "ef96c7445891155938a25cf0d165bfabfd71f0a03d11db2813850ef47065e11b"
+    },
+    "Source/AbuM53Runtime/Private/AbuM53RuntimeModule.cpp": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "42e1f5ea4900a1226a02022c5668041dc444ce013564cd2603262f6f73b8c82d"
+    },
+    "Source/AbuM53Runtime/Private/AbuM53Serialization.cpp": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "0dd9b919811fc4e5623eae2fb58130f4355dd4ef248758c546825fa0dcbc3b5b"
+    },
+    "Source/AbuM53Runtime/Private/CoreBridge.cpp": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "17ac00be54b0b6eeccd60043a7c68cc6d709a03b78d43c2600fe425ac5e57b38"
+    },
+    "Source/AbuM53Runtime/Private/SoftwareBridge.cpp": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "26c6e750f91ccc1d17bcb67f54c602454b13b1be089366b81b8abf1b714b4e5a"
+    },
+    "Source/AbuM53Runtime/Private/SpzBridge.cpp": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "221bd2cda23adb38c5b07417a7aa9275ae51c24098fc56544132cce06e259f4f"
+    },
+    "Source/AbuM53Runtime/Private/Tests/AbuM53ComponentTests.cpp": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "c44fa5fa99794c2e3a844952c1e20cb7bed420b25b2326e44656efb1916b2949"
+    },
+    "Source/AbuM53Runtime/Private/Tests/AbuM53ImportFeedbackTests.cpp": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "155853fa157d1b6ee0560262111c6b4d03dc683f0258db81911590ff9a3f5897"
+    },
+    "Source/AbuM53Runtime/Private/Tests/AbuM53SerializationTests.cpp": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "be80ed2d07d6f1b7b9e482adf6101cb5b60a48b334819791a2e29ef950bb423a"
+    },
+    "Source/AbuM53Runtime/Private/Tests/AbuM53Tests.cpp": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "86966e31103096aef636436cfb612c3a929f9e880b293e50fe5647cfaa361b23"
+    },
+    "Source/AbuM53Runtime/Private/ZstdBridge.cpp": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "d30f28224ada5f01608fb29db3f69daf34f9c98fe7596e4c319a4dbf1a25442d"
+    },
+    "Source/AbuM53Runtime/Public/AbuM53Actor.h": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "2b542ac85afd1e69aac2f21169e50ebb1594f5a75589daf716c3012f0d27c591"
+    },
+    "Source/AbuM53Runtime/Public/AbuM53Asset.h": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "d0edf92f532cd886dad116635464c0333936184ffa7a0b234a6364346407139f"
+    },
+    "Source/AbuM53Runtime/Public/AbuM53AssetVersion.h": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "bd62606215d24bb8e97cbf0519f0eb9c00b64a25360a610de041a7214779ea21"
+    },
+    "Source/AbuM53Runtime/Public/AbuM53Component.h": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "2c845f0283d31d90209ede8f13abd6f01c19bc2dfd47cfc0ff0d2e33662dc9c4"
+    },
+    "Source/AbuM53Runtime/Public/AbuM53Types.h": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "66d8efcd3b1b111107068ef3c13962759270ed2c455336b7d52f16eb900be06b"
+    },
+    "Tests/Fixtures/manifest.json": {
+      "origins": [
+        "abu-m53-synthetic"
+      ],
+      "sha256": "1873b0638d49ba6a62cdcf10efdfc5129a671427cafdc4c9d688e6d14a9f8609"
+    },
+    "Tests/Fixtures/shell.am53seq": {
+      "origins": [
+        "abu-m53-synthetic"
+      ],
+      "sha256": "3b9e95ca1aefaa242f91f0b3066f13d4741c74fc0fa615905aadb84d811f8457"
+    },
+    "Tests/Fixtures/shell.splat": {
+      "origins": [
+        "abu-m53-synthetic"
+      ],
+      "sha256": "afe686d8e81335d36fe60c0a34fd23d5aa6b8b88ec4cd09317ef8d64eead485e"
+    },
+    "Tests/Fixtures/shell_0000.ply": {
+      "origins": [
+        "abu-m53-synthetic"
+      ],
+      "sha256": "5f4bc182b28a3f832f9483e006bcb3aa2d26b9f9f3e97dc93ef46191d0dd0b41"
+    },
+    "Tests/Fixtures/shell_0001.ply": {
+      "origins": [
+        "abu-m53-synthetic"
+      ],
+      "sha256": "b1dd98106c0b45974d2e8c865031247097e9ab642c4a38d6eecd6f4cf008f55f"
+    },
+    "Tests/Fixtures/shell_0002.ply": {
+      "origins": [
+        "abu-m53-synthetic"
+      ],
+      "sha256": "3259aa6e5299d47ae10275121fc2cabce6c98f731e3c045076844c2aaf5af2eb"
+    },
+    "Tests/Fixtures/shell_binary.ply": {
+      "origins": [
+        "abu-m53-synthetic"
+      ],
+      "sha256": "5c98508c1d63627811e82f40944e0d5cf7af2134344da599bb495617e6e7bd81"
+    },
+    "Tests/portable/fixtures/spz_bad_toc.spz": {
+      "origins": [
+        "abu-m53-synthetic"
+      ],
+      "sha256": "4e8bef6c973baf959b0d75088a27eb317df3230acb0de0eb1ea7603080bbb0fa"
+    },
+    "Tests/portable/fixtures/spz_extensions_rejected.spz": {
+      "origins": [
+        "abu-m53-synthetic"
+      ],
+      "sha256": "fba5e83607c38e4ac55b6d4972c5ce743b39815ad33fc89559b4a78c2eeae328"
+    },
+    "Tests/portable/fixtures/spz_gzip_bomb.spz": {
+      "origins": [
+        "abu-m53-synthetic"
+      ],
+      "sha256": "72a8842dda6b76e40086707d5d430bd3dde915680e3df052f760f5f33be346f9"
+    },
+    "Tests/portable/fixtures/spz_v1_sh0.spz": {
+      "origins": [
+        "abu-m53-synthetic"
+      ],
+      "sha256": "92e0262590acd8a51a99c7705f776ef2b153ad52e0faf838eb82066f027f25a6"
+    },
+    "Tests/portable/fixtures/spz_v1_sh3.spz": {
+      "origins": [
+        "abu-m53-synthetic"
+      ],
+      "sha256": "2f2b97df1648f24ba53e8c3909e8ac787a24f5db126a1b025b9220fe531d154d"
+    },
+    "Tests/portable/fixtures/spz_v2_sh0.spz": {
+      "origins": [
+        "abu-m53-synthetic"
+      ],
+      "sha256": "7a96e1e2e6f79c7401d2260036f236e84244df01b35cbd84564e3ca181a49eba"
+    },
+    "Tests/portable/fixtures/spz_v2_sh3.spz": {
+      "origins": [
+        "abu-m53-synthetic"
+      ],
+      "sha256": "7d6c9ef11d8cd85eb37fb2fc00068ea8f33812bca15bb6403c875602e8f9bebc"
+    },
+    "Tests/portable/fixtures/spz_v3_sh0.spz": {
+      "origins": [
+        "abu-m53-synthetic"
+      ],
+      "sha256": "845c8c3a6c16f8e3399adac956e7e32776695614fe7c754fb945e3df85618697"
+    },
+    "Tests/portable/fixtures/spz_v3_sh3.spz": {
+      "origins": [
+        "abu-m53-synthetic"
+      ],
+      "sha256": "f42f82b90c67c26c7bf4ed8569e3e62da8f1704664366f14af1a697adae35f3c"
+    },
+    "Tests/portable/fixtures/spz_v4_compressed.spz": {
+      "origins": [
+        "abu-m53-synthetic"
+      ],
+      "sha256": "fad7e8c4fac22fc9ae274e918de82e581243d2e68c56609ebc961c4f194d03a5"
+    },
+    "Tests/portable/fixtures/spz_v4_sh0.spz": {
+      "origins": [
+        "abu-m53-synthetic"
+      ],
+      "sha256": "fc067bf352c3ce4ef5a4ff23a87f167608fcadc7532714670068377b27bb030f"
+    },
+    "Tests/portable/fixtures/spz_v4_sh3.spz": {
+      "origins": [
+        "abu-m53-synthetic"
+      ],
+      "sha256": "b656d3ab5ba169756f17b615292aaec798e68f0e5c26583a86af9b61bf30b3b4"
+    },
+    "Tests/portable/generate_spz_fixtures.py": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "8f68d061e763c8a529bc0737df78404afb29f798af4bc1688de57756376a2613"
+    },
+    "Tests/portable/tests.cpp": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "edd9ec66874694dcd1425c6bd61d56109fd60027f4d657a9ca7b19e91649e249"
+    },
+    "ThirdParty/Zstd/LICENSE": {
+      "origins": [
+        "zstandard"
+      ],
+      "sha256": "7055266497633c9025b777c78eb7235af13922117480ed5c674677adc381c9d8"
+    },
+    "ThirdParty/Zstd/zstd.h": {
+      "origins": [
+        "zstandard"
+      ],
+      "sha256": "9b4bc8245565c98ccfc61c07749928b57e7c0f6fddb0530c4f6aa1971893d88b"
+    },
+    "ThirdParty/Zstd/zstd_errors.h": {
+      "origins": [
+        "zstandard"
+      ],
+      "sha256": "66a8c3f71d12ea6e797e4f622f31f3f8f81c41b36f48cad4f5de7d8bfb6aac0a"
+    },
+    "ThirdParty/Zstd/zstddeclib.c": {
+      "origins": [
+        "zstandard",
+        "xxhash-zstd-adaptation"
+      ],
+      "sha256": "06401e2078c8111752bc9ec351b995026c467a4b5df1f1602dbad0b5de72384b"
+    },
+    "Tools/Deployment/setup_test_project.py": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "af22487c0f11747e3141382e0a775008f3c9f9b31611585ed25058ad0b7f2fe9"
+    },
+    "Tools/Deployment/test_windows.py": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "8c51b16d7662d24fbe9071c571807c8279978d5f49ae9031eb72e23ff0a81a99"
+    },
+    "Tools/Deployment/update_windows.ps1": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "23ccbe24ad6fd2c0d39eac2acec009a1cca1ff124ae8af49c71a943db2ceb0ff"
+    },
+    "Tools/Deployment/windows.py": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "6fd8466b717faffe25758e3a5d47118e93f1d72d7349d8604e3b873b85360c33"
+    },
+    "Tools/M53Convert/main.cpp": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "7ee179d536d04e3eeeaba2821c3b39a6b4948a62009cc349235213d8e80dcd46"
+    },
+    "Tools/Provenance/provenance.py": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "765c271e8d34e30d50deb44c0f93e2a724be31dbfc3e77accfcf191161c5ad8e"
+    },
+    "Tools/Provenance/test_provenance.py": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "a03fa3bc79c17a7f5f6a6f1e5c0f811273699edae8319a93cac8e9d7df434ad6"
+    },
+    "Tools/QA/audit_source.py": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "54dcc721afa6edb9d71424d9c13ce760b20a353f542bd974f912b4d64fc8ee4d"
+    },
+    "Tools/QA/compare_captures.py": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "4902fed943b8040ca5e946b504e762b4c61a4c6e102687627747c9a28d64dbc3"
+    },
+    "Tools/QA/create_host.ps1": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "ea32826e7e390e163579c036b9b3ebef4de01cfb908085886755badd454cff32"
+    },
+    "Tools/QA/export_evidence.py": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "8e6e6e0b8c83e1b80b952dde2bffe8baa7fab72709fe603cbbf02508e09f586a"
+    },
+    "Tools/QA/generate_benchmark.py": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "811f3e7a872fd6875ac67312eb16ce02ebedde6d59a028acf13ed755d4d099db"
+    },
+    "Tools/QA/generate_fixtures.py": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "5b84c8b0eb9521b03c92eb0b2579dda8891959d16d3b2ea175e5a30958916b99"
+    },
+    "Tools/QA/package_source.py": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "12e9e0eb1da6d203c906dd6400dae0c89ad8e8c016fbb34e30ae78f03f6f3006"
+    },
+    "Tools/QA/test_sequence_validation.py": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "5bd19275bb4e0ee79b829911c51d325ac7c1310b6dbf0e4a03db0ca50b1607cc"
+    },
+    "Tools/QA/test_source_package.py": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "cf422fcb2ab0ed27b4a2362dde83ba8f6712a4e52df13a42b054441b6ecfd91c"
+    },
+    "Tools/QA/ue_asset_benchmark.py": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "ef7f1b37215262dc82fe38e9fc0f59446883b5070ad53f70c2226d6b7bc2a6aa"
+    },
+    "Tools/QA/ue_asset_reload_validation.py": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "50516a04c23b93660496898ee477ce5e13334c0146c0d5f5113a3a551df5e2e6"
+    },
+    "Tools/QA/ue_benchmark.py": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "165525a9a65f0af2806e81230de23409d6c4d14f4e00cada8f92c9a07c84a2ab"
+    },
+    "Tools/QA/ue_capture.py": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "8bb38f280cd318848d4a7c8c642ff89ffa850ecb3c5083b794e3041a776492b2"
+    },
+    "Tools/QA/ue_capture_backends.py": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "0472348256673d1766b7204e613c5e76219cc7bcda56f22beca2d322588a620f"
+    },
+    "Tools/QA/ue_sequence_validation.py": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "e91938d8758cedf50d5acac45d4c608b65beba84c87c7ab0bb176d943587f356"
+    },
+    "Tools/QA/ue_smoke.py": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "76928d6a8a7fc8413d94656b0f67d700feff94f7a43a9e71a7973dc7efe2dddd"
+    },
+    "Tools/QA/ue_spz_smoke.py": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "af4221b69bf4504529754fae654387e715e70a168eb47d1db297d3b11b5d5f8c"
+    },
+    "Tools/Sequences/prepare_ply_sequence.py": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "76b6c068511ec4ed5efea9a22e198f902cd4f6c8969128a3cf7616230a99a19b"
+    },
+    "Tools/Sequences/test_prepare_ply_sequence.py": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "d89565eebde6f5e15564e467e2665288dc9e000cdb4fe6a101a5ff20e23c9f4e"
+    },
+    "Tools/Versioning/test_version.py": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "f444b6cbd9b9adc9b98d13917e99dc6325d124d4a79fe614a36dfd38f2206fdb"
+    },
+    "Tools/Versioning/version.py": {
+      "origins": [
+        "abu-m53-original"
+      ],
+      "sha256": "88d78fda488f344fd13936623d60423ae290b00ac45ac1c392012111303f736a"
+    }
+  },
+  "limitations": "Reviewed declarations and drift detection, not proof of authorship or legal clearance. Narrative and dependency notices remain required.",
+  "reviewed_version": "v0.0.0.4",
+  "reviewed_date": "2026-10-26",
+  "reviewer": "ChatGPT AI agent (user-directed)",
+  "implementation_sha256": "a12af8a000ea977e256236003ad8bbb3d59f0e610b8f9244777e5d39730542b3"
+}
